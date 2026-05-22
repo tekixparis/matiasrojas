@@ -326,12 +326,22 @@
       overflow: hidden;
       position: relative;
       scroll-snap-align: start;
+      margin: 0;
     }
     .photo-slot img {
       width: 100%; height: 100%; object-fit: cover;
+      object-position: top center;
       transition: transform .5s cubic-bezier(.16,1,.3,1);
+      display: block;
     }
     .photo-slot:hover img { transform: scale(1.05); }
+    .photo-slot figcaption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem .85rem .75rem;
+      background: linear-gradient(to top, oklch(8% 0.02 245 / 0.88), transparent);
+      font-size: .56rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: oklch(88% 0.04 228);
+    }
     .photo-slot-ph {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -579,15 +589,7 @@
   </div>
 
   <div class="hero-photo">
-    <!-- Remplacer par: <img src="matias-hero.jpg" alt="Matias Rojas, coiffeur à domicile Paris"> -->
-    <div class="hero-photo-ph">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="1"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <path d="M21 15l-5-5L5 21"/>
-      </svg>
-      Photo principale
-    </div>
+    <img src="messi.png" alt="Matias Rojas avec Lionel Messi">
     <span class="hero-photo-label" aria-hidden="true">Paris · 48°51′N 2°21′E</span>
   </div>
 </section>
@@ -654,81 +656,39 @@
   <p class="gallery-eyebrow">Quelques visages</p>
   <div class="gallery-scroll">
 
-    <div class="photo-slot">
-      <!-- <img src="photo1.jpg" alt="Matias avec [nom]"> -->
-      <div class="photo-slot-ph">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Photo 1
-      </div>
-    </div>
+    <figure class="photo-slot">
+      <img src="lgante.png" alt="Matias Rojas avec L-Gante, Tour Eiffel, Paris">
+      <figcaption>L-Gante</figcaption>
+    </figure>
 
-    <div class="photo-slot">
-      <!-- <img src="photo2.jpg" alt="Matias avec [nom]"> -->
-      <div class="photo-slot-ph">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Photo 2
-      </div>
-    </div>
+    <figure class="photo-slot">
+      <img src="racing-92.png" alt="Matias Rojas avec les joueurs du Racing 92">
+      <figcaption>Racing 92</figcaption>
+    </figure>
 
-    <div class="photo-slot">
-      <!-- <img src="photo3.jpg" alt="Matias avec [nom]"> -->
-      <div class="photo-slot-ph">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Photo 3
-      </div>
-    </div>
+    <figure class="photo-slot">
+      <img src="agustin-crevy.png" alt="Matias Rojas avec Agustín Creevy">
+      <figcaption>Agustín Creevy</figcaption>
+    </figure>
 
-    <div class="photo-slot">
-      <!-- <img src="photo4.jpg" alt="Matias avec [nom]"> -->
-      <div class="photo-slot-ph">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Photo 4
-      </div>
-    </div>
+    <figure class="photo-slot">
+      <img src="autenticos-decadentes.png" alt="Matias Rojas avec Los Auténticos Decadentes">
+      <figcaption>Auténticos Decadentes</figcaption>
+    </figure>
 
-    <div class="photo-slot">
-      <!-- <img src="photo5.jpg" alt="Matias avec [nom]"> -->
-      <div class="photo-slot-ph">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Photo 5
-      </div>
-    </div>
+    <figure class="photo-slot">
+      <img src="pablo-lescano.png" alt="Matias Rojas avec Pablo Lescano de Damas Gratis">
+      <figcaption>Pablo Lescano</figcaption>
+    </figure>
 
-    <div class="photo-slot">
-      <!-- <img src="photo6.jpg" alt="Matias avec [nom]"> -->
-      <div class="photo-slot-ph">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="1"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Photo 6
-      </div>
-    </div>
+    <figure class="photo-slot">
+      <img src="messi.png" alt="Matias Rojas avec Lionel Messi">
+      <figcaption>Lionel Messi</figcaption>
+    </figure>
 
   </div>
   <p class="gallery-caption rev">
-    Joueurs du Racing 92, footballeurs argentins, artistes parisiens. Il n'en parle pas trop. Ceux qui l'ont eu une fois reviennent.
+    Il n'en parle pas trop. Ceux qui l'ont eu une fois reviennent.
   </p>
 </section>
 

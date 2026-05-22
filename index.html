@@ -14,12 +14,12 @@
     :root {
       --cel:    oklch(66% 0.155 228);
       --cel-dk: oklch(34% 0.13 228);
-      --cel-lt: oklch(88% 0.07 228);
-      --ink:    oklch(11% 0.022 245);
-      --ink-2:  oklch(8% 0.025 245);
+      --cel-lt: oklch(92% 0.055 228);
+      --ink:    oklch(13% 0.022 245);
       --blanc:  oklch(97% 0.005 230);
+      --stone:  oklch(94% 0.008 228);
       --muted:  oklch(54% 0.03 240);
-      --line:   oklch(11% 0.022 245 / 0.10);
+      --line:   oklch(13% 0.022 245 / 0.10);
       --wa:     oklch(54% 0.20 145);
       --pad:    clamp(1.25rem, 4.5vw, 4.5rem);
     }
@@ -39,51 +39,43 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
       padding: 1rem var(--pad);
       display: flex; align-items: center; justify-content: space-between;
+      background: oklch(97% 0.005 230 / 0);
+      transition: background .35s, backdrop-filter .35s, border-color .35s;
+      border-bottom: 1px solid transparent;
     }
-    .nav-bg {
-      position: absolute; inset: 0;
-      background: transparent;
-      transition: background .35s, backdrop-filter .35s;
-    }
-    nav.scrolled .nav-bg {
-      background: oklch(97% 0.005 230 / 0.95);
+    nav.scrolled {
+      background: oklch(97% 0.005 230 / 0.93);
       backdrop-filter: blur(18px);
+      border-bottom-color: var(--line);
     }
     .nav-logo {
-      position: relative; z-index: 1;
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900; font-size: .95rem;
       letter-spacing: .07em; text-transform: uppercase;
-      color: oklch(97% 0.005 230); text-decoration: none;
-      transition: color .3s;
+      color: var(--ink); text-decoration: none;
     }
-    nav.scrolled .nav-logo { color: var(--ink); }
     .nav-right {
-      position: relative; z-index: 1;
       display: flex; align-items: center; gap: 2rem;
     }
     .nav-loc {
       font-size: .55rem; font-weight: 600; letter-spacing: .22em;
-      text-transform: uppercase; color: var(--cel);
-      transition: color .3s;
+      text-transform: uppercase; color: var(--muted);
     }
-    nav.scrolled .nav-loc { color: var(--muted); }
     .nav-cta {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .88rem; font-weight: 800; letter-spacing: .06em;
       text-transform: uppercase;
       color: oklch(97% 0.005 230); text-decoration: none;
       padding: .42rem 1.15rem;
-      background: var(--cel);
+      background: var(--ink);
       transition: background .2s;
     }
-    nav.scrolled .nav-cta { background: var(--ink); }
-    .nav-cta:hover { background: var(--cel-dk) !important; }
+    .nav-cta:hover { background: var(--cel) !important; }
 
     /* ── HERO ─────────────────────────────────── */
     #hero {
       min-height: 100svh;
-      background: var(--ink);
+      background: var(--blanc);
       display: grid;
       grid-template-columns: 58% 42%;
       overflow: hidden;
@@ -119,13 +111,13 @@
     .badge-label {
       font-size: .5rem; font-weight: 600; letter-spacing: .2em;
       text-transform: uppercase;
-      color: oklch(34% 0.04 240);
+      color: var(--muted);
       line-height: 1.55;
     }
     .hero-origin {
       font-size: .54rem; font-weight: 600; letter-spacing: .2em;
       text-transform: uppercase;
-      color: oklch(38% 0.04 240);
+      color: var(--muted);
       margin-top: .2rem;
     }
 
@@ -140,7 +132,7 @@
       font-size: clamp(5rem, 11.5vw, 14rem);
       line-height: .87;
       letter-spacing: -.025em;
-      color: oklch(97% 0.005 230);
+      color: var(--ink);
     }
     .line-wrap {
       display: block;
@@ -180,12 +172,12 @@
     .hero-fact {
       font-size: .5rem; font-weight: 600; letter-spacing: .18em;
       text-transform: uppercase;
-      color: oklch(40% 0.04 240);
+      color: var(--muted);
       line-height: 1.9;
     }
     .hero-fact strong {
       display: block;
-      color: oklch(78% 0.055 228);
+      color: var(--ink);
       font-weight: 800;
       letter-spacing: .1em;
     }
@@ -208,7 +200,7 @@
 
     .hero-photo {
       position: relative; overflow: hidden;
-      background: oklch(16% 0.025 245);
+      background: var(--stone);
     }
     .hero-photo img {
       position: absolute; inset: 0;
@@ -218,8 +210,7 @@
 
     /* ── TICKER ───────────────────────────────── */
     #ticker {
-      background: var(--ink-2);
-      border-top: 1px solid oklch(17% 0.022 240);
+      background: var(--cel);
       padding: .75rem 0;
       overflow: hidden;
     }
@@ -244,12 +235,12 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .78rem; font-weight: 800; letter-spacing: .18em;
       text-transform: uppercase;
-      color: oklch(36% 0.05 240);
+      color: oklch(30% 0.12 228);
     }
-    .ticker-seg em { color: var(--cel); font-style: normal; }
+    .ticker-seg em { color: var(--ink); font-style: normal; }
     .tk-dot {
       width: 3px; height: 3px;
-      background: oklch(28% 0.04 240);
+      background: oklch(44% 0.10 228);
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -328,8 +319,9 @@
 
     /* ── GALLERY ──────────────────────────────── */
     #gallery {
-      background: var(--ink);
+      background: var(--stone);
       padding: clamp(3.5rem, 6vh, 5.5rem) var(--pad);
+      border-top: 1px solid var(--line);
     }
     .gallery-header {
       display: flex; align-items: baseline;
@@ -341,11 +333,11 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: clamp(2.2rem, 4vw, 4.5rem);
       font-weight: 900; text-transform: uppercase; letter-spacing: -.025em;
-      color: oklch(97% 0.005 230);
+      color: var(--ink);
     }
     .gallery-hint {
       font-size: .56rem; font-weight: 300; font-style: italic;
-      color: oklch(36% 0.04 240);
+      color: var(--muted);
     }
     .gallery-grid {
       display: grid;
@@ -357,7 +349,7 @@
       overflow: hidden;
       position: relative;
       margin: 0;
-      background: oklch(16% 0.025 245);
+      background: oklch(88% 0.04 228);
     }
     .photo-slot img {
       width: 100%; height: 100%;
@@ -381,7 +373,7 @@
     }
     .gallery-caption {
       font-size: .58rem; font-weight: 300; font-style: italic;
-      color: oklch(36% 0.04 240);
+      color: var(--muted);
     }
 
     /* ── SERVICES ─────────────────────────────── */
@@ -437,10 +429,11 @@
 
     /* ── CONTACT ──────────────────────────────── */
     #contact {
-      background: var(--ink-2);
+      background: var(--cel-lt);
       padding: clamp(6rem, 11vh, 10rem) var(--pad) clamp(4rem, 7vh, 7rem);
       overflow: hidden;
       position: relative;
+      border-top: 1px solid oklch(66% 0.155 228 / 0.25);
     }
     .ct-bg-name {
       position: absolute;
@@ -450,7 +443,7 @@
       font-weight: 900; text-transform: uppercase;
       font-size: clamp(10rem, 28vw, 36rem);
       line-height: 1; letter-spacing: -.04em;
-      color: oklch(66% 0.155 228 / 0.07);
+      color: oklch(66% 0.155 228 / 0.12);
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
@@ -458,7 +451,7 @@
     .ct-inner { position: relative; z-index: 1; max-width: 820px; }
     .ct-eyebrow {
       font-size: .48rem; font-weight: 700; letter-spacing: .3em;
-      text-transform: uppercase; color: oklch(44% 0.07 228);
+      text-transform: uppercase; color: var(--cel-dk);
       margin-bottom: 2rem;
     }
     .ct-headline {
@@ -466,12 +459,12 @@
       font-size: clamp(3.5rem, 9.5vw, 12rem);
       font-weight: 900; text-transform: uppercase;
       line-height: .87; letter-spacing: -.03em;
-      color: oklch(97% 0.005 230);
+      color: var(--ink);
       margin-bottom: 2.25rem;
     }
     .ct-sub {
       font-size: .8rem; font-weight: 300;
-      color: oklch(48% 0.04 240); line-height: 1.85;
+      color: var(--muted); line-height: 1.85;
       margin-bottom: 3rem; max-width: 36ch;
     }
     .btn-wa-main {
@@ -488,10 +481,10 @@
     .ct-socials { display: flex; gap: 2.25rem; margin-top: 3rem; }
     .ct-soc {
       font-size: .56rem; font-weight: 600; letter-spacing: .18em;
-      text-transform: uppercase; color: oklch(34% 0.04 240);
+      text-transform: uppercase; color: var(--muted);
       text-decoration: none; transition: color .2s;
     }
-    .ct-soc:hover { color: var(--cel); }
+    .ct-soc:hover { color: var(--cel-dk); }
 
     /* ── FLOATING WA ──────────────────────────── */
     .wa-float {
@@ -595,7 +588,6 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-bg"></div>
   <a href="#" class="nav-logo">Matias Rojas</a>
   <div class="nav-right">
     <span class="nav-loc">Paris · Île-de-France</span>

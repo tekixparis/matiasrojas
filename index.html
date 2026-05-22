@@ -4,39 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matias Rojas — Coiffeur à domicile, Paris</title>
-  <meta name="description" content="Coiffeur à domicile à Paris. 5e mondial OMC Hair World Championship 2022. Il vient chez vous.">
+  <meta name="description" content="Coiffeur à domicile à Paris. 5e mondial OMC Hair World Championship 2022. Coupes à domicile en Île-de-France.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Tenor+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:    #F1EBE2;
-      --cream: #FAF7F2;
-      --ink:   #0D0C09;
-      --gold:  #B8860B;
-      --muted: #7A7268;
-      --line:  rgba(13,12,9,.1);
-      --dark:  #0D0C09;
-      --wa:    #25D366;
+      --cel:    oklch(68% 0.12 228);
+      --cel-dk: oklch(35% 0.12 228);
+      --ink:    oklch(10% 0.02 245);
+      --blanc:  oklch(97% 0.01 230);
+      --muted:  oklch(52% 0.03 240);
+      --line:   oklch(10% 0.02 245 / 0.10);
+      --wa:     oklch(54% 0.20 145);
+      --pad:    clamp(1.5rem, 5vw, 5rem);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
+      background: var(--blanc);
       color: var(--ink);
-      font-family: 'Tenor Sans', sans-serif;
-      font-size: 1rem;
-      line-height: 1.65;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
       overflow-x: hidden;
     }
 
-    /* ── NAV ─────────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-      padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+      padding: 1.25rem var(--pad);
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-bg {
@@ -45,16 +43,14 @@
       transition: background .4s, backdrop-filter .4s;
     }
     nav.scrolled .nav-bg {
-      background: rgba(241,235,226,.94);
-      backdrop-filter: blur(12px);
+      background: oklch(97% 0.01 230 / 0.94);
+      backdrop-filter: blur(14px);
     }
     .nav-logo {
       position: relative; z-index: 1;
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-size: .85rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase;
-      color: #fff; text-decoration: none;
+      font-size: .72rem; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: oklch(98% 0.01 230); text-decoration: none;
       transition: color .3s;
     }
     nav.scrolled .nav-logo { color: var(--ink); }
@@ -62,442 +58,461 @@
       position: relative; z-index: 1;
       display: flex; align-items: center; gap: 2.5rem;
     }
-    .nav-city {
-      font-size: .62rem; letter-spacing: .24em; text-transform: uppercase;
-      color: rgba(255,255,255,.4);
+    .nav-tag {
+      font-size: .58rem; font-weight: 500; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--cel);
       transition: color .3s;
     }
-    nav.scrolled .nav-city { color: var(--muted); }
+    nav.scrolled .nav-tag { color: var(--muted); }
     .nav-cta {
-      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
-      color: #fff; text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 1px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase;
+      color: oklch(98% 0.01 230); text-decoration: none;
+      border-bottom: 2px solid var(--cel); padding-bottom: 1px;
       transition: color .2s, border-color .2s;
     }
     nav.scrolled .nav-cta { color: var(--ink); border-color: var(--ink); }
-    .nav-cta:hover { color: var(--gold); border-color: var(--gold); }
+    .nav-cta:hover { color: var(--cel); border-color: var(--cel) !important; }
 
-    /* ── HERO ────────────────────────────────────────── */
+    /* ── HERO ────────────────────────────────── */
     #hero {
       min-height: 100svh;
-      background: var(--dark);
+      background: var(--ink);
       display: grid;
-      grid-template-columns: 1fr 42%;
-      position: relative;
+      grid-template-columns: 58% 42%;
       overflow: hidden;
     }
-    .hero-text {
+    .hero-left {
       position: relative;
-      padding: clamp(7rem,12vh,10rem) clamp(1.5rem,5vw,4rem) clamp(3rem,6vh,5rem);
+      padding: clamp(6.5rem,11vh,9rem) var(--pad) clamp(3rem,5vh,4.5rem);
       display: flex; flex-direction: column; justify-content: flex-end;
     }
     .hero-badge {
       position: absolute;
-      top: clamp(5.5rem,9vh,8rem);
-      left: clamp(1.5rem,5vw,4rem);
+      top: clamp(5rem,8vh,7rem);
+      left: var(--pad);
     }
-    .badge-num {
+    .badge-n {
       display: block;
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-size: clamp(2rem,4vw,4.5rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -.02em;
-      color: var(--gold);
+      font-size: clamp(2rem,3.8vw,4rem);
+      font-weight: 900; line-height: 1; letter-spacing: -.02em;
+      color: var(--cel);
     }
-    .badge-num sup {
-      font-size: .42em; font-weight: 400;
-      vertical-align: super; margin-left: .03em;
-    }
-    .badge-label {
+    .badge-n sup { font-size: .45em; vertical-align: super; }
+    .badge-t {
       display: block;
-      font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(255,255,255,.28);
-      line-height: 1.5; margin-top: .3rem;
+      font-size: .5rem; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase;
+      color: oklch(35% 0.03 240); line-height: 1.6; margin-top: .25rem;
     }
     .hero-eyebrow {
-      font-size: .6rem; letter-spacing: .26em; text-transform: uppercase;
-      color: rgba(255,255,255,.3);
-      margin-bottom: 2.5rem;
+      font-size: .58rem; font-weight: 700; letter-spacing: .26em;
+      text-transform: uppercase; color: var(--cel);
+      margin-bottom: 1.75rem;
     }
     .hero-name {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      line-height: .88; letter-spacing: -.025em;
-      color: #fff; margin-bottom: 3rem;
+      font-weight: 900; text-transform: uppercase;
+      font-size: clamp(4rem, 13.5vw, 14rem);
+      line-height: .87; letter-spacing: -.03em;
+      color: oklch(98% 0.01 230);
     }
     .hero-name .l1 {
       display: block;
-      font-size: clamp(4.5rem,13vw,14rem);
-      font-weight: 400; font-style: italic;
+      clip-path: inset(0 100% 0 0);
+      animation: sliceIn .6s cubic-bezier(.16,1,.3,1) .08s both;
     }
     .hero-name .l2 {
       display: block;
-      font-size: clamp(4.5rem,13vw,14rem);
-      font-weight: 900; font-style: normal;
+      clip-path: inset(0 100% 0 0);
+      animation: sliceIn .6s cubic-bezier(.16,1,.3,1) .24s both;
     }
+    @keyframes sliceIn { to { clip-path: inset(0 0 0 0); } }
+
+    .hero-stripe {
+      height: 8px;
+      background: var(--cel);
+      width: 0;
+      margin: 2rem 0 2.25rem;
+      animation: stripeGrow .75s cubic-bezier(.16,1,.3,1) .5s both;
+    }
+    @keyframes stripeGrow { to { width: 100%; } }
+
     .hero-meta {
-      display: flex; align-items: flex-start; gap: 3rem; flex-wrap: wrap;
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
     }
     .hero-meta-item {
-      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
-      color: rgba(255,255,255,.35); line-height: 1.6;
+      font-size: .58rem; font-weight: 400; letter-spacing: .16em;
+      text-transform: uppercase; color: oklch(48% 0.03 240); line-height: 1.7;
     }
     .hero-meta-item strong {
-      display: block; font-weight: 400;
-      color: rgba(255,255,255,.8);
+      display: block; font-weight: 700; letter-spacing: .12em;
+      color: oklch(82% 0.04 228);
     }
+    .hero-wa {
+      display: inline-flex; align-items: center; gap: .75rem;
+      background: var(--wa); color: oklch(99% 0.01 145);
+      padding: 1rem 2.2rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      width: fit-content;
+      animation: fadeUp .6s ease .7s both;
+      transition: opacity .2s, transform .2s;
+    }
+    .hero-wa:hover { opacity: .88; transform: translateY(-2px); }
+    .hero-wa svg { width: 17px; height: 17px; flex-shrink: 0; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .hero-photo {
       position: relative; overflow: hidden;
-      background: #1a1916;
+      background: oklch(15% 0.025 245);
     }
     .hero-photo img {
       position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover; opacity: .85;
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
     }
-    .hero-ph {
+    .hero-photo-ph {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: .8rem;
-      font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(255,255,255,.15);
+      flex-direction: column; gap: 1rem;
+      font-size: .55rem; letter-spacing: .2em; text-transform: uppercase;
+      color: oklch(32% 0.03 240);
     }
-    .hero-ph svg { width: 30px; height: 30px; opacity: .15; }
+    .hero-photo-ph svg { width: 30px; height: 30px; opacity: .25; }
     .hero-photo-label {
-      position: absolute; bottom: 2rem; right: -1.2rem;
-      font-size: .5rem; letter-spacing: .3em; text-transform: uppercase;
-      color: rgba(255,255,255,.2);
+      position: absolute; bottom: 2rem; right: -1rem;
+      font-size: .46rem; font-weight: 500; letter-spacing: .28em;
+      text-transform: uppercase; color: oklch(28% 0.03 240);
       writing-mode: vertical-lr; transform: rotate(180deg);
     }
 
-    /* ── STATEMENT ───────────────────────────────────── */
+    /* ── STATEMENT ───────────────────────────── */
     #statement {
-      background: var(--bg);
-      padding: clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,4rem);
+      background: var(--blanc);
+      padding: clamp(5rem,9vh,8rem) var(--pad);
       border-top: 1px solid var(--line);
     }
-    .statement-inner { max-width: 920px; }
-    .statement-text {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-style: italic; font-weight: 400;
-      font-size: clamp(1.8rem,3.4vw,3rem);
-      line-height: 1.32; letter-spacing: -.01em;
+    .stmt-inner { max-width: 860px; }
+    .stmt-text {
+      font-size: clamp(1.6rem,3vw,2.8rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.38; letter-spacing: -.01em;
     }
-    .statement-text em { font-style: normal; font-weight: 700; }
-    .statement-source {
-      margin-top: 2rem;
-      font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--muted);
+    .stmt-text strong { font-style: normal; font-weight: 900; }
+    .stmt-source {
+      margin-top: 1.75rem;
+      font-size: .6rem; font-weight: 700; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--muted);
     }
 
-    /* ── ACHIEVEMENT ─────────────────────────────────── */
+    /* ── ACHIEVEMENT ─────────────────────────── */
     #achievement {
-      background: var(--cream);
-      padding: clamp(4rem,8vh,7rem) clamp(1.5rem,5vw,4rem);
-      border-top: 1px solid var(--line);
+      background: var(--cel);
+      padding: clamp(4rem,7vh,7rem) var(--pad);
+      overflow: hidden;
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: clamp(2rem,5vw,7rem);
-      align-items: end;
+      grid-template-columns: min-content 1fr;
+      gap: clamp(2rem,4vw,6rem);
+      align-items: center;
     }
     .ach-num {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-weight: 900;
-      font-size: clamp(10rem,26vw,28rem);
-      line-height: .85; letter-spacing: -.04em;
+      font-weight: 900; letter-spacing: -.05em;
+      font-size: clamp(12rem,36vw,42rem);
+      line-height: .82;
       color: var(--ink);
     }
     .ach-num sup {
-      font-size: .22em; font-weight: 400;
-      vertical-align: super; color: var(--gold);
-      letter-spacing: 0;
+      font-size: .22em; font-weight: 700;
+      vertical-align: super; letter-spacing: 0;
+      color: oklch(30% 0.10 230);
     }
-    .ach-content { padding-bottom: .5rem; }
-    .ach-eyebrow {
-      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 1.5rem;
+    .ach-content {}
+    .ach-label {
+      font-size: .56rem; font-weight: 700; letter-spacing: .24em;
+      text-transform: uppercase;
+      color: oklch(30% 0.10 230);
+      margin-bottom: 1.5rem;
     }
     .ach-title {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-style: italic; font-weight: 400;
-      font-size: clamp(1.3rem,2.2vw,2rem);
-      line-height: 1.35; margin-bottom: 1.5rem;
+      font-size: clamp(1.1rem,2vw,1.9rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+      line-height: 1.2; color: var(--ink);
+      margin-bottom: 1.25rem; max-width: 480px;
     }
     .ach-body {
-      font-size: .8rem; line-height: 1.85;
-      color: var(--muted); max-width: 400px;
+      font-size: .8rem; font-weight: 300;
+      line-height: 1.85; color: oklch(25% 0.06 240);
+      max-width: 400px;
     }
-    .gold-rule {
-      width: 48px; height: 1px;
-      background: var(--gold);
-      margin-top: 2rem;
+    .ach-rule {
+      width: 40px; height: 3px;
+      background: var(--ink); margin-top: 2rem;
     }
 
-    /* ── ABOUT ───────────────────────────────────────── */
+    /* ── ABOUT ───────────────────────────────── */
     #about {
-      display: grid;
-      grid-template-columns: 44% 1fr;
+      background: var(--blanc);
+      padding: clamp(5rem,9vh,8rem) var(--pad);
       border-top: 1px solid var(--line);
-    }
-    .about-photo {
-      position: relative; min-height: 580px;
-      background: #ddd8d0; overflow: hidden;
-    }
-    .about-photo img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .about-ph {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: .8rem;
-      font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .about-ph svg { width: 26px; height: 26px; opacity: .3; }
-    .about-vtext {
-      position: absolute; bottom: 2.5rem; left: 1.5rem;
-      font-size: .5rem; letter-spacing: .3em; text-transform: uppercase;
-      color: rgba(255,255,255,.35);
-      writing-mode: vertical-rl; transform: rotate(180deg);
-    }
-    .about-content {
-      padding: clamp(4rem,8vh,6rem) clamp(3rem,6vw,6rem);
-      display: flex; flex-direction: column; justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem,6vw,8rem);
+      align-items: start;
     }
     .about-eyebrow {
-      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 2.5rem;
+      font-size: .56rem; font-weight: 700; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 2rem;
     }
     .about-title {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-weight: 700;
-      font-size: clamp(1.8rem,2.6vw,2.7rem);
-      line-height: 1.12; letter-spacing: -.02em;
+      font-size: clamp(1.6rem,2.5vw,2.8rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: -.02em;
+      line-height: 1.08; margin-bottom: 2rem;
+    }
+    .about-para {
+      font-size: .83rem; font-weight: 300;
+      line-height: 1.9; color: var(--muted);
+      margin-bottom: .9rem; max-width: 55ch;
+    }
+    .about-para strong { color: var(--ink); font-weight: 700; }
+    .about-stats { display: grid; gap: 0; }
+    .about-stat {
+      border-top: 1px solid var(--line);
+      padding: 1.25rem 0;
+    }
+    .about-stat:last-child { border-bottom: 1px solid var(--line); }
+    .about-stat-n {
+      font-size: clamp(2.2rem,3.8vw,4.2rem);
+      font-weight: 900; letter-spacing: -.03em;
+      line-height: 1; color: var(--cel-dk);
+    }
+    .about-stat-n sup { font-size: .45em; vertical-align: super; }
+    .about-stat-l {
+      font-size: .58rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: .3rem;
+    }
+
+    /* ── GALLERY ─────────────────────────────── */
+    #gallery {
+      background: var(--ink);
+      padding: clamp(4rem,7vh,6rem) var(--pad);
+      border-top: 1px solid oklch(15% 0.02 240);
+    }
+    .gallery-eyebrow {
+      font-size: .56rem; font-weight: 700; letter-spacing: .24em;
+      text-transform: uppercase; color: oklch(50% 0.06 228);
       margin-bottom: 2rem;
     }
-    .about-title em { font-style: italic; font-weight: 400; }
-    .about-para {
-      font-size: .82rem; line-height: 1.88;
-      color: var(--muted); margin-bottom: 1rem;
-      max-width: 460px;
+    .gallery-scroll {
+      display: flex; gap: .6rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: .5rem;
+      scrollbar-width: none;
+      margin: 0 calc(-1 * var(--pad));
+      padding-left: var(--pad);
+      padding-right: var(--pad);
     }
-    .about-para strong { color: var(--ink); font-weight: 400; }
+    .gallery-scroll::-webkit-scrollbar { display: none; }
+    .photo-slot {
+      flex-shrink: 0;
+      width: clamp(200px, 26vw, 320px);
+      aspect-ratio: 3/4;
+      background: oklch(16% 0.025 245);
+      overflow: hidden;
+      position: relative;
+      scroll-snap-align: start;
+    }
+    .photo-slot img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .photo-slot:hover img { transform: scale(1.05); }
+    .photo-slot-ph {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: .6rem;
+      font-size: .52rem; letter-spacing: .18em; text-transform: uppercase;
+      color: oklch(32% 0.03 240);
+    }
+    .photo-slot-ph svg { width: 22px; height: 22px; opacity: .22; }
+    .gallery-caption {
+      margin-top: 1.5rem;
+      font-size: .62rem; font-weight: 300; font-style: italic;
+      color: oklch(40% 0.03 240); max-width: 580px; line-height: 1.7;
+    }
 
-    /* ── SERVICES ────────────────────────────────────── */
+    /* ── SERVICES ────────────────────────────── */
     #services {
-      background: var(--bg);
-      padding: clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,4rem);
+      background: var(--blanc);
+      padding: clamp(5rem,9vh,8rem) var(--pad);
       border-top: 1px solid var(--line);
     }
     .svc-header {
-      display: flex; align-items: baseline;
-      justify-content: space-between; gap: 2rem;
-      margin-bottom: 3.5rem;
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 2rem; margin-bottom: 3rem;
     }
     .svc-eyebrow {
-      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--muted);
+      font-size: .56rem; font-weight: 700; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--muted);
     }
     .svc-note {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-style: italic; font-size: .88rem;
-      color: var(--muted);
+      font-size: .72rem; font-weight: 300; font-style: italic; color: var(--muted);
     }
     .svc-table { width: 100%; border-collapse: collapse; }
     .svc-table tr { border-top: 1px solid var(--line); }
     .svc-table tr:last-child { border-bottom: 1px solid var(--line); }
-    .svc-table td { padding: 1.6rem 0; vertical-align: baseline; }
+    .svc-table td { padding: 1.5rem 0; vertical-align: baseline; }
     td.sn {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-style: italic; font-weight: 400;
-      font-size: clamp(1.3rem,2vw,1.85rem);
-      letter-spacing: -.01em;
+      font-size: clamp(1.1rem,1.8vw,1.75rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
       transition: color .2s;
     }
-    .svc-table tr:hover td.sn { color: var(--gold); }
+    .svc-table tr:hover td.sn { color: var(--cel-dk); }
     td.sd {
-      font-size: .74rem; color: var(--muted);
-      padding-left: 2.5rem; line-height: 1.6;
-      max-width: 280px;
+      font-size: .72rem; font-weight: 300; color: var(--muted);
+      padding-left: 2.5rem; line-height: 1.6; max-width: 260px;
     }
     td.sp {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-weight: 700;
-      font-size: clamp(.95rem,1.4vw,1.25rem);
-      text-align: right; white-space: nowrap;
-      color: var(--ink);
+      font-size: clamp(.9rem,1.3vw,1.15rem);
+      font-weight: 700; text-align: right; white-space: nowrap;
+      color: var(--cel-dk);
     }
 
-    /* ── ZONE ────────────────────────────────────────── */
+    /* ── ZONE ────────────────────────────────── */
     #zone {
+      background: var(--blanc);
       border-top: 1px solid var(--line);
-      padding: 1rem clamp(1.5rem,5vw,4rem);
-      display: flex; align-items: center; gap: 1.2rem;
+      padding: .9rem var(--pad);
+      display: flex; align-items: center; gap: 1rem;
     }
-    .zone-pin { color: var(--muted); flex-shrink: 0; }
+    .zone-icon { color: var(--cel-dk); flex-shrink: 0; }
     .zone-text {
-      font-size: .68rem; letter-spacing: .08em; color: var(--muted);
+      font-size: .64rem; font-weight: 400; letter-spacing: .06em; color: var(--muted);
     }
     .zone-text strong {
-      font-weight: 400; letter-spacing: .16em; text-transform: uppercase;
-      font-size: .62rem; color: var(--ink);
+      font-weight: 700; text-transform: uppercase; letter-spacing: .14em;
+      font-size: .6rem; color: var(--ink);
     }
 
-    /* ── CLIENTS ─────────────────────────────────────── */
-    #clients {
-      background: var(--dark); color: #fff;
-      padding: clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,4rem);
-      border-top: 1px solid rgba(255,255,255,.04);
-    }
-    .cl-inner { max-width: 780px; }
-    .cl-eyebrow {
-      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
-      color: rgba(255,255,255,.22); margin-bottom: 3rem;
-    }
-    .cl-text {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-style: italic; font-weight: 400;
-      font-size: clamp(1.6rem,3vw,2.7rem);
-      line-height: 1.35; letter-spacing: -.01em;
-      color: rgba(255,255,255,.86);
-    }
-    .cl-text strong { font-style: normal; font-weight: 700; color: #fff; }
-    .cl-gold { color: var(--gold); font-style: normal; }
-    .cl-tags {
-      display: flex; gap: .45rem; flex-wrap: wrap; margin-top: 3rem;
-    }
-    .cl-tag {
-      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
-      padding: .3rem .8rem;
-      border: 1px solid rgba(255,255,255,.1);
-      color: rgba(255,255,255,.28);
-      transition: color .2s, border-color .2s; cursor: default;
-    }
-    .cl-tag:hover { color: rgba(255,255,255,.65); border-color: rgba(255,255,255,.3); }
-
-    /* ── CONTACT ─────────────────────────────────────── */
+    /* ── CONTACT ─────────────────────────────── */
     #contact {
-      background: var(--bg);
-      padding: clamp(6rem,12vh,10rem) clamp(1.5rem,5vw,4rem);
-      border-top: 1px solid var(--line);
+      background: var(--ink);
+      padding: clamp(6rem,11vh,10rem) var(--pad);
+      border-top: 1px solid oklch(15% 0.02 240);
     }
-    .ct-inner { max-width: 880px; }
+    .ct-inner { max-width: 840px; }
     .ct-eyebrow {
-      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 2.5rem;
+      font-size: .56rem; font-weight: 700; letter-spacing: .24em;
+      text-transform: uppercase; color: oklch(48% 0.06 228);
+      margin-bottom: 2.5rem;
     }
     .ct-headline {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-weight: 700;
-      font-size: clamp(3rem,8vw,8.5rem);
-      line-height: .9; letter-spacing: -.03em;
+      font-size: clamp(3rem,8.5vw,9.5rem);
+      font-weight: 900; text-transform: uppercase;
+      line-height: .88; letter-spacing: -.03em;
+      color: oklch(98% 0.01 230);
       margin-bottom: 3rem;
     }
-    .ct-headline em { font-style: italic; font-weight: 400; color: var(--muted); }
     .ct-sub {
-      font-size: .8rem; color: var(--muted);
-      line-height: 1.8; max-width: 400px; margin-bottom: 3rem;
+      font-size: .8rem; font-weight: 300; font-style: italic;
+      color: oklch(55% 0.04 240); line-height: 1.85;
+      max-width: 400px; margin-bottom: 3.5rem;
     }
     .ct-btns { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: .7rem;
-      font-family: 'Tenor Sans', sans-serif;
-      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
-      text-decoration: none; padding: .9rem 1.9rem;
-      transition: background .2s, color .2s, transform .2s;
-      cursor: pointer; border: none;
+    .btn-wa-main {
+      display: inline-flex; align-items: center; gap: .85rem;
+      background: var(--wa); color: oklch(99% 0.01 145);
+      padding: 1.2rem 2.8rem;
+      font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      transition: opacity .2s, transform .2s;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-    .btn-outline {
-      color: var(--ink); border: 1px solid var(--ink); background: transparent;
+    .btn-wa-main:hover { opacity: .88; transform: translateY(-2px); }
+    .btn-wa-main svg { width: 19px; height: 19px; flex-shrink: 0; }
+    .btn-cal {
+      display: inline-flex; align-items: center; gap: .75rem;
+      background: transparent; color: oklch(98% 0.01 230);
+      padding: 1.2rem 2.2rem;
+      border: 1px solid oklch(28% 0.03 240);
+      font-size: .7rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none; cursor: pointer;
+      transition: border-color .2s, color .2s, transform .2s;
     }
-    .btn-outline:hover { background: var(--ink); color: var(--bg); }
-    .btn-wa { color: #fff; background: var(--wa); border: 1px solid var(--wa); }
-    .btn-wa:hover { opacity: .88; }
+    .btn-cal:hover { border-color: var(--cel); color: var(--cel); transform: translateY(-2px); }
+    .btn-cal svg { width: 15px; height: 15px; flex-shrink: 0; }
     .ct-socials { display: flex; gap: 2rem; margin-top: 3rem; }
     .ct-soc {
-      font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none;
-      border-bottom: 1px solid transparent; padding-bottom: 1px;
+      font-size: .6rem; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase; color: oklch(38% 0.04 240);
+      text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px;
       transition: color .2s, border-color .2s;
     }
-    .ct-soc:hover { color: var(--ink); border-color: var(--ink); }
+    .ct-soc:hover { color: var(--cel); border-color: var(--cel); }
 
-    /* ── FLOATING WA ─────────────────────────────────── */
+    /* ── FLOATING WA ─────────────────────────── */
     .wa-float {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 800;
-      display: flex; align-items: center; gap: .6rem;
-      background: var(--ink); color: #fff;
-      padding: .7rem 1.2rem;
-      font-family: 'Tenor Sans', sans-serif;
-      font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(13,12,9,.22);
+      display: flex; align-items: center; gap: .65rem;
+      background: var(--ink); color: oklch(98% 0.01 230);
+      padding: .75rem 1.35rem;
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      box-shadow: 0 4px 22px oklch(10% 0.02 245 / 0.28);
       transition: background .25s, transform .2s;
     }
     .wa-float:hover { background: var(--wa); transform: translateY(-2px); }
-    .wa-float svg { width: 13px; height: 13px; }
+    .wa-float svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-    /* ── FOOTER ──────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────── */
     footer {
-      padding: 1.5rem clamp(1.5rem,5vw,4rem);
+      background: var(--blanc);
+      padding: 1.5rem var(--pad);
       border-top: 1px solid var(--line);
       display: flex; align-items: center; justify-content: space-between;
       gap: 1rem; flex-wrap: wrap;
     }
     .ft-logo {
-      font-family: 'Bodoni Moda', serif;
-      font-optical-sizing: auto;
-      font-weight: 700; font-size: .82rem;
-      letter-spacing: .06em; text-transform: uppercase;
+      font-size: .75rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
     }
     .ft-copy {
-      font-size: .58rem; letter-spacing: .14em;
+      font-size: .56rem; font-weight: 400; letter-spacing: .14em;
       text-transform: uppercase; color: var(--muted);
     }
     .ft-ig {
-      font-size: .58rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted);
-      text-decoration: none; transition: color .2s;
+      font-size: .56rem; font-weight: 400; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      transition: color .2s;
     }
     .ft-ig:hover { color: var(--ink); }
 
-    /* ── REVEALS ─────────────────────────────────────── */
+    /* ── REVEALS ─────────────────────────────── */
     .rev {
-      opacity: 0; transform: translateY(18px);
-      transition: opacity .85s cubic-bezier(.16,1,.3,1),
-                  transform .85s cubic-bezier(.16,1,.3,1);
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .75s cubic-bezier(.16,1,.3,1),
+                  transform .75s cubic-bezier(.16,1,.3,1);
     }
     .rev.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: .12s; }
-    .d2 { transition-delay: .22s; }
-    .d3 { transition-delay: .32s; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
 
-    /* ── RESPONSIVE ──────────────────────────────────── */
+    /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 960px) {
-      #hero { grid-template-columns: 1fr; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-photo { height: 56vw; order: -1; }
-      .hero-text { justify-content: flex-start; padding-top: 2.5rem; }
-      .hero-badge { display: none; }
+      .hero-left { justify-content: flex-start; padding-top: 2.5rem; }
+      .hero-badge { top: 1.5rem; }
 
       #achievement { grid-template-columns: 1fr; gap: 2rem; }
-      .ach-num { font-size: clamp(8rem,28vw,16rem); }
+      .ach-num { font-size: clamp(9rem,28vw,16rem); }
 
       #about { grid-template-columns: 1fr; }
-      .about-photo { min-height: 68vw; }
-      .about-content { padding: 3rem 1.5rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
 
       .svc-header { flex-direction: column; gap: .4rem; }
       td.sd { display: none; }
@@ -506,9 +521,10 @@
     }
 
     @media (max-width: 600px) {
-      .hero-name .l1, .hero-name .l2 { font-size: clamp(3.5rem,15vw,6.5rem); }
-      .ct-headline { font-size: clamp(2.8rem,11vw,5rem); }
+      .hero-name { font-size: clamp(3.2rem,15vw,6.5rem); }
+      .ct-headline { font-size: clamp(2.8rem,12vw,5rem); }
       .wa-float { right: 1rem; bottom: 1rem; }
+      .about-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -519,7 +535,7 @@
   <div class="nav-bg"></div>
   <a href="#" class="nav-logo">Matias Rojas</a>
   <div class="nav-right">
-    <span class="nav-city">Paris</span>
+    <span class="nav-tag">Paris</span>
     <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous."
        class="nav-cta" target="_blank" rel="noopener">Réserver</a>
   </div>
@@ -527,115 +543,221 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-text">
+  <div class="hero-left">
     <div class="hero-badge">
-      <span class="badge-num">5<sup>e</sup></span>
-      <span class="badge-label">OMC World<br>Paris 2022</span>
+      <span class="badge-n">5<sup>e</sup></span>
+      <span class="badge-t">Mondial<br>OMC 2022</span>
     </div>
+
     <p class="hero-eyebrow">Buenos Aires → Paris</p>
+
     <h1 class="hero-name">
       <span class="l1">Matias</span>
       <span class="l2">Rojas.</span>
     </h1>
+
+    <div class="hero-stripe" aria-hidden="true"></div>
+
     <div class="hero-meta">
-      <div class="hero-meta-item"><strong>Coiffeur</strong>À domicile</div>
-      <div class="hero-meta-item"><strong>Paris</strong>Île-de-France</div>
-      <div class="hero-meta-item"><strong>5<sup style="font-size:.7em">e</sup> mondial</strong>OMC 2022</div>
+      <div class="hero-meta-item">
+        <strong>Coiffeur</strong>
+        À domicile
+      </div>
+      <div class="hero-meta-item">
+        <strong>Paris</strong>
+        Île-de-France
+      </div>
     </div>
+
+    <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous%20pour%20une%20coupe%20à%20domicile."
+       class="hero-wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Réserver maintenant
+    </a>
   </div>
+
   <div class="hero-photo">
-    <!--  <img src="photo.jpg" alt="Matias Rojas">  -->
-    <div class="hero-ph">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
+    <!-- Remplacer par: <img src="matias-hero.jpg" alt="Matias Rojas, coiffeur à domicile Paris"> -->
+    <div class="hero-photo-ph">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="1"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
         <path d="M21 15l-5-5L5 21"/>
       </svg>
       Photo principale
     </div>
-    <span class="hero-photo-label">Paris · 48°51′N 2°21′E</span>
+    <span class="hero-photo-label" aria-hidden="true">Paris · 48°51′N 2°21′E</span>
   </div>
 </section>
 
 <!-- STATEMENT -->
 <section id="statement">
-  <div class="statement-inner">
-    <p class="statement-text rev">
+  <div class="stmt-inner">
+    <p class="stmt-text rev">
       Venu d'Argentine pour un championnat mondial.<br>
-      <em>Resté à Paris pour continuer à couper.</em>
+      <strong>Resté à Paris pour continuer à couper.</strong>
     </p>
-    <p class="statement-source rev d1">— Coiffeur à domicile depuis 2022</p>
+    <p class="stmt-source rev d1">Coiffeur à domicile depuis 2022</p>
   </div>
 </section>
 
 <!-- ACHIEVEMENT -->
 <section id="achievement">
-  <div class="ach-num rev">5<sup>e</sup></div>
+  <div class="ach-num rev" aria-label="5e">5<sup>e</sup></div>
   <div class="ach-content rev d1">
-    <p class="ach-eyebrow">OMC Hair World Championship · Paris, 2022</p>
-    <h2 class="ach-title">Face aux meilleurs coiffeurs du monde,<br>à la ville où il a choisi de rester.</h2>
+    <p class="ach-label">OMC Hair World Championship · Paris, 2022</p>
+    <h2 class="ach-title">Face aux meilleurs coiffeurs du monde, dans la ville où il a choisi de rester.</h2>
     <p class="ach-body">
-      Parmi les 47 nations représentées, Matias Rojas a terminé 5e mondial dans la catégorie hommes. Après le championnat, il a décidé de rester à Paris.
+      Parmi les 47 nations représentées, Matias Rojas a terminé 5e mondial dans la catégorie hommes. Il a décidé de rester à Paris.
     </p>
-    <div class="gold-rule"></div>
+    <div class="ach-rule"></div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-photo">
-    <!--  <img src="photo2.jpg" alt="Matias au travail">  -->
-    <div class="about-ph">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
-        <path d="M21 15l-5-5L5 21"/>
-      </svg>
-      Portrait / en action
-    </div>
-    <span class="about-vtext">Buenos Aires · Argentina</span>
-  </div>
-  <div class="about-content">
+  <div class="about-left">
     <p class="about-eyebrow rev">À propos</p>
-    <h2 class="about-title rev d1">Un coiffeur argentin<br><em>installé à Paris.</em></h2>
+    <h2 class="about-title rev d1">Coiffeur<br>argentin<br>à Paris.</h2>
     <p class="about-para rev d2">
       Matias est arrivé en 2022 pour le OMC Hair World Championship.
       <strong>Il a terminé 5e mondial.</strong> Puis il est resté.
     </p>
     <p class="about-para rev d2">
-      Depuis, il coupe à domicile. Il vient chez vous, avec tout le matériel.
+      Depuis, il coupe à domicile. Il vient chez vous, avec tout son matériel.
       Pas de salle d'attente, pas de déplacement. <strong>Juste une vraie coupe.</strong>
     </p>
     <p class="about-para rev d2">
       Sa façon de couper vient d'Argentine, affinée à Paris. Les deux se sentent dans le résultat.
     </p>
   </div>
+  <div class="about-stats rev d1">
+    <div class="about-stat">
+      <div class="about-stat-n">5<sup>e</sup></div>
+      <div class="about-stat-l">Mondial OMC 2022</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-n">47</div>
+      <div class="about-stat-l">Nations en compétition</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-n">2022</div>
+      <div class="about-stat-l">Installé à Paris</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="gallery-eyebrow">Quelques visages</p>
+  <div class="gallery-scroll">
+
+    <div class="photo-slot">
+      <!-- <img src="photo1.jpg" alt="Matias avec [nom]"> -->
+      <div class="photo-slot-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Photo 1
+      </div>
+    </div>
+
+    <div class="photo-slot">
+      <!-- <img src="photo2.jpg" alt="Matias avec [nom]"> -->
+      <div class="photo-slot-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Photo 2
+      </div>
+    </div>
+
+    <div class="photo-slot">
+      <!-- <img src="photo3.jpg" alt="Matias avec [nom]"> -->
+      <div class="photo-slot-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Photo 3
+      </div>
+    </div>
+
+    <div class="photo-slot">
+      <!-- <img src="photo4.jpg" alt="Matias avec [nom]"> -->
+      <div class="photo-slot-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Photo 4
+      </div>
+    </div>
+
+    <div class="photo-slot">
+      <!-- <img src="photo5.jpg" alt="Matias avec [nom]"> -->
+      <div class="photo-slot-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Photo 5
+      </div>
+    </div>
+
+    <div class="photo-slot">
+      <!-- <img src="photo6.jpg" alt="Matias avec [nom]"> -->
+      <div class="photo-slot-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Photo 6
+      </div>
+    </div>
+
+  </div>
+  <p class="gallery-caption rev">
+    Joueurs du Racing 92, footballeurs argentins, artistes parisiens. Il n'en parle pas trop. Ceux qui l'ont eu une fois reviennent.
+  </p>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
   <div class="svc-header rev">
-    <span class="svc-eyebrow">Ce qu'il fait</span>
-    <span class="svc-note">À domicile, partout en Île-de-France</span>
+    <span class="svc-eyebrow">Tarifs</span>
+    <span class="svc-note">Île-de-France, sans frais supplémentaires</span>
   </div>
   <table class="svc-table">
     <tbody>
       <tr class="rev">
         <td class="sn">Coupe homme</td>
-        <td class="sd">Classique, fade ou sur mesure.<br>La coupe qui vous correspond.</td>
+        <td class="sd">Classique, fade ou sur mesure. La coupe qui vous correspond.</td>
         <td class="sp">25 €</td>
       </tr>
       <tr class="rev d1">
         <td class="sn">Coupe + Barbe</td>
-        <td class="sd">Les deux ensemble. Taillée, dégradée<br>ou rasée selon vos envies.</td>
+        <td class="sd">Les deux ensemble. Taillée, dégradée ou rasée selon vos envies.</td>
         <td class="sp">30 €</td>
       </tr>
       <tr class="rev d2">
         <td class="sn">Coupe femme</td>
-        <td class="sd">Coupe, brushing, entretien.<br>La même précision, sans le salon.</td>
+        <td class="sd">Coupe, brushing, entretien. La même précision, sans le salon.</td>
         <td class="sp">25 €</td>
       </tr>
       <tr class="rev d3">
         <td class="sn">Événement</td>
-        <td class="sd">Mariage, shooting, soirée. Il se déplace<br>pour les occasions qui comptent.</td>
+        <td class="sd">Mariage, shooting, soirée. Il se déplace pour les occasions qui comptent.</td>
         <td class="sp">Sur devis</td>
       </tr>
     </tbody>
@@ -644,57 +766,38 @@
 
 <!-- ZONE -->
 <div id="zone">
-  <svg class="zone-pin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+  <svg class="zone-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
     <circle cx="12" cy="9" r="2.5"/>
   </svg>
   <span class="zone-text">
-    <strong>Île-de-France</strong> — Paris et banlieue · Déplacement sans frais supplémentaires
+    <strong>Île-de-France</strong> — Paris et banlieue, déplacement inclus
   </span>
 </div>
-
-<!-- CLIENTS -->
-<section id="clients">
-  <div class="cl-inner">
-    <p class="cl-eyebrow">Références</p>
-    <p class="cl-text rev">
-      Joueurs du <span class="cl-gold">Racing 92</span>,
-      footballeurs argentins, artistes de la scène parisienne.
-      <strong>Il n'en parle pas trop.</strong>
-      Ceux qui l'ont eu une fois reviennent.
-    </p>
-    <div class="cl-tags">
-      <span class="cl-tag">Rugby</span>
-      <span class="cl-tag">Football</span>
-      <span class="cl-tag">Artistes</span>
-      <span class="cl-tag">Paris</span>
-      <span class="cl-tag">Argentine</span>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="ct-inner">
     <p class="ct-eyebrow rev">Réserver</p>
-    <h2 class="ct-headline rev d1">Votre coiffure,<br><em>chez vous.</em></h2>
-    <p class="ct-sub rev d2">Réservez un créneau en ligne ou écrivez directement sur WhatsApp.</p>
+    <h2 class="ct-headline rev d1">Votre<br>coiffure<br>chez vous.</h2>
+    <p class="ct-sub rev d2">Un message WhatsApp suffit. Matias répond rapidement et fixe le créneau qui vous convient.</p>
     <div class="ct-btns rev d2">
-      <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/VOTRE-LIEN'});return false;"
-         class="btn btn-outline">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-        Choisir un créneau
-      </a>
       <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous%20pour%20une%20coupe%20à%20domicile."
-         class="btn btn-wa" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
+         class="btn-wa-main" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-        WhatsApp
+        Écrire sur WhatsApp
+      </a>
+      <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/VOTRE-LIEN'});return false;"
+         class="btn-cal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Calendly
       </a>
     </div>
     <div class="ct-socials rev d3">
@@ -706,8 +809,8 @@
 
 <!-- FLOATING WA -->
 <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous."
-   class="wa-float" target="_blank" rel="noopener">
-  <svg viewBox="0 0 24 24" fill="currentColor">
+   class="wa-float" target="_blank" rel="noopener" aria-label="Réserver sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
   Réserver
@@ -716,7 +819,7 @@
 <!-- FOOTER -->
 <footer>
   <span class="ft-logo">Matias Rojas</span>
-  <span class="ft-copy">© 2025 · Coiffeur à domicile · Paris</span>
+  <span class="ft-copy">2025 · Coiffeur à domicile · Paris</span>
   <a href="https://www.instagram.com/matiaaas_rojas" class="ft-ig" target="_blank" rel="noopener">@matiaaas_rojas</a>
 </footer>
 
@@ -728,8 +831,8 @@
   const hero = document.getElementById('hero');
 
   function updateNav() {
-    const pastHero = window.scrollY > hero.offsetHeight - 80;
-    nav.classList.toggle('scrolled', window.scrollY > 40 || pastHero);
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    nav.classList.toggle('scrolled', heroBottom < 80);
   }
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
@@ -745,8 +848,8 @@
   document.querySelectorAll('.rev').forEach(el => io.observe(el));
 </script>
 
-<!-- ⚠️  Remplacer https://calendly.com/VOTRE-LIEN par le lien Calendly réel -->
-<!-- ⚠️  Remplacer les blocs .hero-ph / .about-ph par <img src="..."> -->
+<!-- Photos: remplacer chaque .photo-slot-ph par <img src="NOM.jpg" alt="Matias avec [personne]"> -->
+<!-- Calendly: remplacer https://calendly.com/VOTRE-LIEN par le lien réel -->
 
 </body>
 </html>

@@ -4,443 +4,511 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matias Rojas — Coiffeur à domicile, Paris</title>
-  <meta name="description" content="Coiffeur à domicile à Paris. Matias Rojas — 5e place OMC Hair World 2022.">
+  <meta name="description" content="Coiffeur à domicile à Paris. 5e mondial OMC Hair World Championship 2022. Il vient chez vous.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Tenor+Sans&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #F8F7F4;
-      --ink:     #111210;
-      --cel:     #5BA4CF;   /* celeste argentina */
-      --cel-dk:  #3A80A8;   /* celeste foncé */
-      --cel-lt:  #C4DFF0;   /* celeste pâle */
-      --muted:   #7A8E9E;
-      --line:    rgba(17,18,16,.1);
-      --wa:      #25D366;
+      --bg:    #F1EBE2;
+      --cream: #FAF7F2;
+      --ink:   #0D0C09;
+      --gold:  #B8860B;
+      --muted: #7A7268;
+      --line:  rgba(13,12,9,.1);
+      --dark:  #0D0C09;
+      --wa:    #25D366;
     }
 
     html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
       color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
       overflow-x: hidden;
     }
 
-    /* ── CUSTOM CURSOR (scissors on service hover) ─────────────── */
-    body { cursor: default; }
-    .scissor-cursor { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg stroke='%23111210' stroke-width='1.5' fill='none' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='4'/%3E%3Ccircle cx='8' cy='24' r='4'/%3E%3Cline x1='11.5' y1='10.5' x2='26' y2='20'/%3E%3Cline x1='11.5' y1='21.5' x2='26' y2='12'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23111210'/%3E%3C/g%3E%3C/svg%3E") 16 16, crosshair; }
-
-    /* ── NAV ──────────────────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────── */
     nav {
-      position: fixed; top:0; left:0; right:0; z-index: 700;
-      padding: 1.4rem 2.5rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nb {
+    .nav-bg {
       position: absolute; inset: 0;
-      background: rgba(248,247,244,0);
-      transition: background .5s, backdrop-filter .5s;
+      background: transparent;
+      transition: background .4s, backdrop-filter .4s;
     }
-    nav.s .nb { background: rgba(248,247,244,.9); backdrop-filter: blur(14px); }
-    .nl {
-      position: relative; z-index:1;
-      font-family: 'Fraunces', serif; font-weight: 700; font-size:.95rem; letter-spacing:.03em;
-      color: var(--ink); text-decoration: none;
+    nav.scrolled .nav-bg {
+      background: rgba(241,235,226,.94);
+      backdrop-filter: blur(12px);
     }
-    .nr { position: relative; z-index:1; display:flex; align-items:center; gap:2rem; }
-    .nr-tag { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-    .nr-cta {
-      font-size:.72rem; letter-spacing:.08em;
-      color: var(--ink); text-decoration: none;
-      border-bottom: 1px solid currentColor; padding-bottom: 1px;
-      transition: color .25s;
+    .nav-logo {
+      position: relative; z-index: 1;
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-size: .85rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #fff; text-decoration: none;
+      transition: color .3s;
     }
-    .nr-cta:hover { color: var(--cel); border-color: var(--cel); }
+    nav.scrolled .nav-logo { color: var(--ink); }
+    .nav-right {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+    .nav-city {
+      font-size: .62rem; letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      transition: color .3s;
+    }
+    nav.scrolled .nav-city { color: var(--muted); }
+    .nav-cta {
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+      color: #fff; text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+    nav.scrolled .nav-cta { color: var(--ink); border-color: var(--ink); }
+    .nav-cta:hover { color: var(--gold); border-color: var(--gold); }
 
-    /* ── HERO ──────────────────────────────────────────────────── */
+    /* ── HERO ────────────────────────────────────────── */
     #hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       min-height: 100svh;
-    }
-
-    /* Left: white, name */
-    .hl {
-      background: var(--bg);
-      padding: 9rem 2.5rem 3.5rem;
-      display: flex; flex-direction: column; justify-content: space-between;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 42%;
       position: relative;
-    }
-
-    /* Barber pole stripe along the right edge of left panel */
-    .hl::after {
-      content: '';
-      position: absolute; top:0; right:0;
-      width: 5px; height: 100%;
-      background: repeating-linear-gradient(
-        180deg,
-        var(--cel) 0, var(--cel) 12px,
-        var(--bg)  12px, var(--bg) 20px,
-        #D40000   20px, #D40000   32px,
-        var(--bg)  32px, var(--bg) 40px
-      );
-      animation: polev 3s linear infinite;
       overflow: hidden;
     }
-    @keyframes polev {
-      from { background-position: 0 0; }
-      to   { background-position: 0 -80px; }
+    .hero-text {
+      position: relative;
+      padding: clamp(7rem,12vh,10rem) clamp(1.5rem,5vw,4rem) clamp(3rem,6vh,5rem);
+      display: flex; flex-direction: column; justify-content: flex-end;
     }
-
-    .h-name {
-      font-family: 'Fraunces', serif; font-weight: 700;
-      font-size: clamp(4rem, 7.2vw, 9rem);
-      line-height: .9; letter-spacing: -.025em;
-      font-variation-settings: 'opsz' 144;
+    .hero-badge {
+      position: absolute;
+      top: clamp(5.5rem,9vh,8rem);
+      left: clamp(1.5rem,5vw,4rem);
     }
-    .h-name em {
-      display: block; font-style: italic; font-weight: 300;
-      color: var(--cel);
+    .badge-num {
+      display: block;
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-size: clamp(2rem,4vw,4.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: var(--gold);
     }
-    /* Razor-cut reveal: each line cuts in from left */
-    .rcut {
-      display: block; overflow: hidden;
-      clip-path: inset(0 100% 0 0);
-      animation: rslice .65s cubic-bezier(.16,1,.3,1) forwards;
+    .badge-num sup {
+      font-size: .42em; font-weight: 400;
+      vertical-align: super; margin-left: .03em;
     }
-    .rcut:nth-child(1) { animation-delay: .05s; }
-    .rcut:nth-child(2) { animation-delay: .22s; }
-    @keyframes rslice { to { clip-path: inset(0 0% 0 0); } }
-
-    .h-foot {
-      opacity:0;
-      animation: fin .7s ease forwards .7s;
+    .badge-label {
+      display: block;
+      font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+      line-height: 1.5; margin-top: .3rem;
     }
-    .h-foot p { font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); line-height:1.7; }
-
-    /* Right: celeste, photo */
-    .hr {
-      background: var(--cel);
+    .hero-eyebrow {
+      font-size: .6rem; letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin-bottom: 2.5rem;
+    }
+    .hero-name {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      line-height: .88; letter-spacing: -.025em;
+      color: #fff; margin-bottom: 3rem;
+    }
+    .hero-name .l1 {
+      display: block;
+      font-size: clamp(4.5rem,13vw,14rem);
+      font-weight: 400; font-style: italic;
+    }
+    .hero-name .l2 {
+      display: block;
+      font-size: clamp(4.5rem,13vw,14rem);
+      font-weight: 900; font-style: normal;
+    }
+    .hero-meta {
+      display: flex; align-items: flex-start; gap: 3rem; flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.35); line-height: 1.6;
+    }
+    .hero-meta-item strong {
+      display: block; font-weight: 400;
+      color: rgba(255,255,255,.8);
+    }
+    .hero-photo {
       position: relative; overflow: hidden;
+      background: #1a1916;
     }
-    .hr img, .hr .ph {
-      position: absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      clip-path: inset(0 100% 0 0);
-      animation: rslice .8s cubic-bezier(.16,1,.3,1) forwards .1s;
+    .hero-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; opacity: .85;
     }
-    .hr .ph {
-      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.6rem;
-      font-size:.7rem; letter-spacing:.15em; text-transform:uppercase;
-      color: rgba(255,255,255,.6);
+    .hero-ph {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: .8rem;
+      font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,.15);
     }
-    .hr .ph svg { width:30px; height:30px; opacity:.5; }
-
-    /* AFA-style stripes overlay on celeste side (very subtle) */
-    .hr::after {
-      content:''; position:absolute; inset:0; pointer-events:none;
-      background: repeating-linear-gradient(
-        90deg,
-        rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 8px,
-        transparent 8px, transparent 20px
-      );
+    .hero-ph svg { width: 30px; height: 30px; opacity: .15; }
+    .hero-photo-label {
+      position: absolute; bottom: 2rem; right: -1.2rem;
+      font-size: .5rem; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.2);
+      writing-mode: vertical-lr; transform: rotate(180deg);
     }
 
-    @keyframes fin { to { opacity:1; } }
-
-    /* ── RAZOR DIVIDER ─────────────────────────────────────────── */
-    .razor {
-      height:1px; background:var(--ink);
-      width:0; transition: width 1s cubic-bezier(.16,1,.3,1);
+    /* ── STATEMENT ───────────────────────────────────── */
+    #statement {
+      background: var(--bg);
+      padding: clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,4rem);
+      border-top: 1px solid var(--line);
     }
-    .razor.in { width:100%; }
-
-    /* ── OPENER ────────────────────────────────────────────────── */
-    #opener { padding: 7rem 2.5rem 6rem; max-width: 1000px; }
-    .open-q {
-      font-family:'Fraunces',serif; font-style:italic; font-weight:300;
-      font-size: clamp(2rem,3.8vw,3.3rem);
-      line-height:1.32; font-variation-settings:'opsz' 72;
+    .statement-inner { max-width: 920px; }
+    .statement-text {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-style: italic; font-weight: 400;
+      font-size: clamp(1.8rem,3.4vw,3rem);
+      line-height: 1.32; letter-spacing: -.01em;
     }
-    .open-q strong { font-style:normal; font-weight:700; color:var(--cel); }
-
-    /* ── ABOUT ─────────────────────────────────────────────────── */
-    #about { display:grid; grid-template-columns:1fr 1fr; }
-
-    .ab-photo {
-      position:relative; overflow:hidden;
-      background: var(--cel-lt); min-height:560px;
-    }
-    .ab-photo img, .ab-photo .ph {
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    }
-    .ab-photo .ph {
-      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.6rem;
-      font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted);
-    }
-    .ab-photo .ph svg { width:28px; height:28px; opacity:.35; }
-
-    /* Photo razor-cut reveal on scroll */
-    .prv { clip-path: inset(0 100% 0 0); transition: clip-path .75s cubic-bezier(.16,1,.3,1); }
-    .prv.in { clip-path: inset(0 0% 0 0); }
-
-    .ab-txt {
-      padding:5rem 3.5rem 5rem 4rem;
-      display:flex; flex-direction:column; justify-content:center;
-    }
-    .sl { font-size:.67rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:2.5rem; }
-    .ab-h {
-      font-family:'Fraunces',serif; font-weight:700;
-      font-size: clamp(1.7rem,2.4vw,2.3rem);
-      line-height:1.2; margin-bottom:2rem;
-      font-variation-settings:'opsz' 72;
-    }
-    .ab-p { font-size:.88rem; line-height:1.85; color:var(--muted); margin-bottom:1.1rem; }
-    .ab-p strong { color:var(--ink); font-weight:400; }
-
-    /* ── PARIS / ACHIEVEMENT ───────────────────────────────────── */
-    #paris {
-      background: var(--cel);
-      display: grid; grid-template-columns: 1fr 1fr;
-      overflow: hidden;
+    .statement-text em { font-style: normal; font-weight: 700; }
+    .statement-source {
+      margin-top: 2rem;
+      font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .paris-l {
-      padding: 6rem 3rem 6rem 2.5rem;
-      display: flex; flex-direction: column; justify-content: space-between;
-      color: #fff;
+    /* ── ACHIEVEMENT ─────────────────────────────────── */
+    #achievement {
+      background: var(--cream);
+      padding: clamp(4rem,8vh,7rem) clamp(1.5rem,5vw,4rem);
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(2rem,5vw,7rem);
+      align-items: end;
     }
-    .paris-label {
-      font-size:.67rem; letter-spacing:.22em; text-transform:uppercase;
-      color:rgba(255,255,255,.5); margin-bottom:2.5rem;
+    .ach-num {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-size: clamp(10rem,26vw,28rem);
+      line-height: .85; letter-spacing: -.04em;
+      color: var(--ink);
     }
-    .paris-num {
-      font-family:'Fraunces',serif; font-weight:700;
-      font-size: clamp(7rem,16vw,14rem);
-      line-height:1; letter-spacing:-.03em;
-      font-variation-settings:'opsz' 144;
-      color:#fff;
+    .ach-num sup {
+      font-size: .22em; font-weight: 400;
+      vertical-align: super; color: var(--gold);
+      letter-spacing: 0;
     }
-    .paris-num sup {
-      font-size:.35em; font-variation-settings:'opsz' 36;
-      vertical-align:super; margin-left:.05em; font-weight:300;
+    .ach-content { padding-bottom: .5rem; }
+    .ach-eyebrow {
+      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.5rem;
     }
-    .paris-caption {
-      font-family:'Fraunces',serif; font-style:italic;
-      font-size: clamp(1.2rem,2vw,1.7rem);
-      font-weight:300; line-height:1.35; color:rgba(255,255,255,.9);
-      font-variation-settings:'opsz' 72;
-      margin-top:2rem;
+    .ach-title {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-style: italic; font-weight: 400;
+      font-size: clamp(1.3rem,2.2vw,2rem);
+      line-height: 1.35; margin-bottom: 1.5rem;
     }
-
-    /* Eiffel Tower SVG draw-in */
-    .paris-r {
-      display:flex; align-items:center; justify-content:center;
-      padding:4rem 3rem 4rem 0;
+    .ach-body {
+      font-size: .8rem; line-height: 1.85;
+      color: var(--muted); max-width: 400px;
     }
-    /* clip-path on SVG is unreliable — wrap in div */
-    .eiffel-wrap {
-      clip-path: inset(100% 0 0 0);
-      transition: clip-path 2s cubic-bezier(.4,0,.15,1);
-    }
-    .eiffel-wrap.in { clip-path: inset(0% 0 0 0); }
-    .eiffel {
-      width:clamp(130px,18vw,230px);
-      stroke: rgba(255,255,255,.85);
-      stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round;
-    }
-
-    /* ── SERVICES ──────────────────────────────────────────────── */
-    #services { padding:6rem 2.5rem; }
-    .svc-list { list-style:none; }
-    .svc-item {
-      display:flex; align-items:baseline; justify-content:space-between;
-      padding:1.6rem 0; border-bottom:1px solid var(--line);
-      gap:2rem;
-      transition: padding-left .4s cubic-bezier(.16,1,.3,1), border-color .3s;
-    }
-    .svc-item:hover { padding-left:1.4rem; border-color:var(--cel); }
-    .svc-name {
-      font-family:'Fraunces',serif; font-weight:300;
-      font-size: clamp(1.4rem,2.4vw,2rem);
-      font-variation-settings:'opsz' 72;
-      transition: color .25s;
-    }
-    .svc-item:hover .svc-name { color: var(--cel); }
-    .svc-d { font-size:.78rem; color:var(--muted); text-align:right; max-width:250px; }
-
-    /* Mini barber pole as bullet on hover */
-    .svc-item::before {
-      content:'';
-      width:3px; height:0; flex-shrink:0;
-      background: repeating-linear-gradient(
-        180deg,
-        var(--cel) 0, var(--cel) 4px,
-        #D40000 4px, #D40000 8px,
-        var(--bg) 8px, var(--bg) 12px
-      );
-      transition: height .35s cubic-bezier(.16,1,.3,1);
-      align-self: stretch;
-    }
-    .svc-item:hover::before { height:auto; }
-
-    .svc-r { display:flex; flex-direction:column; align-items:flex-end; gap:.3rem; flex-shrink:0; }
-    .svc-price {
-      font-family:'Fraunces',serif; font-weight:700;
-      font-size: clamp(1.1rem,1.8vw,1.5rem);
-      font-variation-settings:'opsz' 72;
-      color: var(--cel);
-      white-space: nowrap;
+    .gold-rule {
+      width: 48px; height: 1px;
+      background: var(--gold);
+      margin-top: 2rem;
     }
 
-    /* Zone strip */
+    /* ── ABOUT ───────────────────────────────────────── */
+    #about {
+      display: grid;
+      grid-template-columns: 44% 1fr;
+      border-top: 1px solid var(--line);
+    }
+    .about-photo {
+      position: relative; min-height: 580px;
+      background: #ddd8d0; overflow: hidden;
+    }
+    .about-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-ph {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: .8rem;
+      font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .about-ph svg { width: 26px; height: 26px; opacity: .3; }
+    .about-vtext {
+      position: absolute; bottom: 2.5rem; left: 1.5rem;
+      font-size: .5rem; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      writing-mode: vertical-rl; transform: rotate(180deg);
+    }
+    .about-content {
+      padding: clamp(4rem,8vh,6rem) clamp(3rem,6vw,6rem);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-eyebrow {
+      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 2.5rem;
+    }
+    .about-title {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-size: clamp(1.8rem,2.6vw,2.7rem);
+      line-height: 1.12; letter-spacing: -.02em;
+      margin-bottom: 2rem;
+    }
+    .about-title em { font-style: italic; font-weight: 400; }
+    .about-para {
+      font-size: .82rem; line-height: 1.88;
+      color: var(--muted); margin-bottom: 1rem;
+      max-width: 460px;
+    }
+    .about-para strong { color: var(--ink); font-weight: 400; }
+
+    /* ── SERVICES ────────────────────────────────────── */
+    #services {
+      background: var(--bg);
+      padding: clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,4rem);
+      border-top: 1px solid var(--line);
+    }
+    .svc-header {
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .svc-eyebrow {
+      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .svc-note {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-style: italic; font-size: .88rem;
+      color: var(--muted);
+    }
+    .svc-table { width: 100%; border-collapse: collapse; }
+    .svc-table tr { border-top: 1px solid var(--line); }
+    .svc-table tr:last-child { border-bottom: 1px solid var(--line); }
+    .svc-table td { padding: 1.6rem 0; vertical-align: baseline; }
+    td.sn {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-style: italic; font-weight: 400;
+      font-size: clamp(1.3rem,2vw,1.85rem);
+      letter-spacing: -.01em;
+      transition: color .2s;
+    }
+    .svc-table tr:hover td.sn { color: var(--gold); }
+    td.sd {
+      font-size: .74rem; color: var(--muted);
+      padding-left: 2.5rem; line-height: 1.6;
+      max-width: 280px;
+    }
+    td.sp {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-size: clamp(.95rem,1.4vw,1.25rem);
+      text-align: right; white-space: nowrap;
+      color: var(--ink);
+    }
+
+    /* ── ZONE ────────────────────────────────────────── */
     #zone {
-      background: var(--ink); color: var(--bg);
-      padding: 1.2rem 2.5rem;
+      border-top: 1px solid var(--line);
+      padding: 1rem clamp(1.5rem,5vw,4rem);
+      display: flex; align-items: center; gap: 1.2rem;
     }
-    .zone-in {
-      display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
-      font-size:.78rem; letter-spacing:.06em; color:rgba(248,247,244,.65);
+    .zone-pin { color: var(--muted); flex-shrink: 0; }
+    .zone-text {
+      font-size: .68rem; letter-spacing: .08em; color: var(--muted);
     }
-    .zone-in svg { color: var(--cel); flex-shrink:0; }
-    .zone-in span:nth-child(2) { color: var(--bg); font-weight:400; }
-    .zone-sep { color: rgba(248,247,244,.3); }
-
-    /* ── CLIENTS (dark) ────────────────────────────────────────── */
-    #clients { background:var(--ink); color:var(--bg); padding:7rem 2.5rem; }
-    .cl-in { max-width:860px; margin:0 auto; }
-    .cl-lb { font-size:.67rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(248,247,244,.3); margin-bottom:3rem; }
-    .cl-q {
-      font-family:'Fraunces',serif; font-style:italic; font-weight:300;
-      font-size: clamp(1.8rem,3.5vw,3rem);
-      line-height:1.35; font-variation-settings:'opsz' 72;
+    .zone-text strong {
+      font-weight: 400; letter-spacing: .16em; text-transform: uppercase;
+      font-size: .62rem; color: var(--ink);
     }
-    .cl-q strong { font-style:normal; font-weight:700; }
 
-    /* Celeste accent in dark section */
-    .cl-q .cel { color:var(--cel); }
-
-    .cl-tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:3rem; }
+    /* ── CLIENTS ─────────────────────────────────────── */
+    #clients {
+      background: var(--dark); color: #fff;
+      padding: clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,4rem);
+      border-top: 1px solid rgba(255,255,255,.04);
+    }
+    .cl-inner { max-width: 780px; }
+    .cl-eyebrow {
+      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(255,255,255,.22); margin-bottom: 3rem;
+    }
+    .cl-text {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-style: italic; font-weight: 400;
+      font-size: clamp(1.6rem,3vw,2.7rem);
+      line-height: 1.35; letter-spacing: -.01em;
+      color: rgba(255,255,255,.86);
+    }
+    .cl-text strong { font-style: normal; font-weight: 700; color: #fff; }
+    .cl-gold { color: var(--gold); font-style: normal; }
+    .cl-tags {
+      display: flex; gap: .45rem; flex-wrap: wrap; margin-top: 3rem;
+    }
     .cl-tag {
-      font-size:.65rem; letter-spacing:.18em; text-transform:uppercase;
-      padding:.35rem .9rem;
-      border:1px solid rgba(248,247,244,.15); color:rgba(248,247,244,.45);
-      transition: border-color .25s, color .25s;
+      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+      padding: .3rem .8rem;
+      border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.28);
+      transition: color .2s, border-color .2s; cursor: default;
     }
-    .cl-tag:hover { border-color:var(--cel); color:var(--cel); }
+    .cl-tag:hover { color: rgba(255,255,255,.65); border-color: rgba(255,255,255,.3); }
 
-    /* ── CONTACT ───────────────────────────────────────────────── */
-    #contact { padding:8rem 2.5rem; text-align:center; }
-    .ct-h {
-      font-family:'Fraunces',serif; font-weight:700;
-      font-size: clamp(2.8rem,7vw,7rem);
-      line-height:.92; letter-spacing:-.025em;
-      font-variation-settings:'opsz' 144;
-      margin-bottom:1.5rem;
+    /* ── CONTACT ─────────────────────────────────────── */
+    #contact {
+      background: var(--bg);
+      padding: clamp(6rem,12vh,10rem) clamp(1.5rem,5vw,4rem);
+      border-top: 1px solid var(--line);
     }
-    .ct-h em { font-style:italic; font-weight:300; color:var(--cel); }
-    .ct-sub { font-size:.88rem; color:var(--muted); line-height:1.75; margin-bottom:3.5rem; }
-
-    .btn-calendly {
-      display:inline-flex; align-items:center; gap:.85rem;
-      background: transparent; color:var(--ink);
-      padding:1rem 2.2rem;
-      border: 1.5px solid var(--ink);
-      font-family:'DM Sans',sans-serif; font-size:.82rem; font-weight:500;
-      letter-spacing:.07em; text-transform:uppercase; text-decoration:none;
-      transition: background .25s, color .25s, transform .25s;
-      cursor: pointer;
+    .ct-inner { max-width: 880px; }
+    .ct-eyebrow {
+      font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 2.5rem;
     }
-    .btn-calendly:hover { background:var(--ink); color:var(--bg); transform:translateY(-2px); }
-    .btn-calendly svg { width:17px; height:17px; flex-shrink:0; }
-    .ct-btns { display:flex; align-items:center; justify-content:center; gap:1rem; flex-wrap:wrap; }
-    .btn-wa {
-      display:inline-flex; align-items:center; gap:.85rem;
-      background:var(--wa); color:#fff;
-      padding:1rem 2.2rem;
-      font-family:'DM Sans',sans-serif; font-size:.82rem; font-weight:500;
-      letter-spacing:.07em; text-transform:uppercase; text-decoration:none;
-      transition: opacity .25s, transform .25s;
+    .ct-headline {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-size: clamp(3rem,8vw,8.5rem);
+      line-height: .9; letter-spacing: -.03em;
+      margin-bottom: 3rem;
     }
-    .btn-wa:hover { opacity:.88; transform:translateY(-2px); }
-    .btn-wa svg { width:19px; height:19px; flex-shrink:0; }
-
-    .ct-socs { margin-top:2.5rem; display:flex; align-items:center; justify-content:center; gap:2rem; }
+    .ct-headline em { font-style: italic; font-weight: 400; color: var(--muted); }
+    .ct-sub {
+      font-size: .8rem; color: var(--muted);
+      line-height: 1.8; max-width: 400px; margin-bottom: 3rem;
+    }
+    .ct-btns { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .7rem;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+      text-decoration: none; padding: .9rem 1.9rem;
+      transition: background .2s, color .2s, transform .2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .btn-outline {
+      color: var(--ink); border: 1px solid var(--ink); background: transparent;
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--bg); }
+    .btn-wa { color: #fff; background: var(--wa); border: 1px solid var(--wa); }
+    .btn-wa:hover { opacity: .88; }
+    .ct-socials { display: flex; gap: 2rem; margin-top: 3rem; }
     .ct-soc {
-      font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
-      color:var(--muted); text-decoration:none;
-      border-bottom:1px solid transparent; padding-bottom:1px;
-      transition:color .25s, border-color .25s;
+      font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 1px solid transparent; padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
     }
-    .ct-soc:hover { color:var(--cel); border-color:var(--cel); }
+    .ct-soc:hover { color: var(--ink); border-color: var(--ink); }
 
-    /* ── FLOATING WA ───────────────────────────────────────────── */
-    .wa-pill {
-      position:fixed; bottom:2rem; right:2rem; z-index:600;
-      display:flex; align-items:center; gap:.7rem;
-      background:var(--ink); color:var(--bg);
-      padding:.75rem 1.3rem;
-      font-family:'DM Sans',sans-serif; font-size:.7rem; font-weight:500;
-      letter-spacing:.08em; text-transform:uppercase; text-decoration:none;
-      box-shadow:0 4px 24px rgba(17,18,16,.18);
-      transition:background .3s, transform .25s;
+    /* ── FLOATING WA ─────────────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 800;
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--ink); color: #fff;
+      padding: .7rem 1.2rem;
+      font-family: 'Tenor Sans', sans-serif;
+      font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(13,12,9,.22);
+      transition: background .25s, transform .2s;
     }
-    .wa-pill:hover { background:var(--wa); transform:translateY(-2px); }
-    .wa-pill svg { width:15px; height:15px; flex-shrink:0; }
+    .wa-float:hover { background: var(--wa); transform: translateY(-2px); }
+    .wa-float svg { width: 13px; height: 13px; }
 
-    /* ── FOOTER ────────────────────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────── */
     footer {
-      padding:1.6rem 2.5rem; border-top:1px solid var(--line);
-      display:flex; align-items:center; justify-content:space-between;
+      padding: 1.5rem clamp(1.5rem,5vw,4rem);
+      border-top: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
     }
-    .ft-n { font-family:'Fraunces',serif; font-weight:700; font-size:.88rem; letter-spacing:.02em; }
-    .ft-c { font-size:.63rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
-    .ft-ig { font-size:.63rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .25s; }
-    .ft-ig:hover { color:var(--cel); }
+    .ft-logo {
+      font-family: 'Bodoni Moda', serif;
+      font-optical-sizing: auto;
+      font-weight: 700; font-size: .82rem;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .ft-copy {
+      font-size: .58rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .ft-ig {
+      font-size: .58rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .ft-ig:hover { color: var(--ink); }
 
-    /* ── REVEAL SYSTEM ─────────────────────────────────────────── */
-    .rev { opacity:0; transform:translateY(24px); transition:opacity .85s ease, transform .85s cubic-bezier(.16,1,.3,1); }
-    .rev.in { opacity:1; transform:translateY(0); }
-    .d1 { transition-delay:.12s; }
-    .d2 { transition-delay:.24s; }
+    /* ── REVEALS ─────────────────────────────────────── */
+    .rev {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .85s cubic-bezier(.16,1,.3,1),
+                  transform .85s cubic-bezier(.16,1,.3,1);
+    }
+    .rev.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .12s; }
+    .d2 { transition-delay: .22s; }
+    .d3 { transition-delay: .32s; }
 
-    /* ── RESPONSIVE ────────────────────────────────────────────── */
-    @media (max-width:860px) {
-      nav { padding:1.2rem 1.4rem; }
-      .nr-tag { display:none; }
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-photo { height: 56vw; order: -1; }
+      .hero-text { justify-content: flex-start; padding-top: 2.5rem; }
+      .hero-badge { display: none; }
 
-      #hero { grid-template-columns:1fr; min-height:auto; }
-      .hl { padding:7rem 1.4rem 2.5rem; }
-      .hl::after { display:none; }
-      .hr { min-height:60vw; }
+      #achievement { grid-template-columns: 1fr; gap: 2rem; }
+      .ach-num { font-size: clamp(8rem,28vw,16rem); }
 
-      #opener { padding:4rem 1.4rem; }
+      #about { grid-template-columns: 1fr; }
+      .about-photo { min-height: 68vw; }
+      .about-content { padding: 3rem 1.5rem; }
 
-      #about { grid-template-columns:1fr; }
-      .ab-photo { min-height:65vw; }
-      .ab-txt { padding:3rem 1.4rem; }
+      .svc-header { flex-direction: column; gap: .4rem; }
+      td.sd { display: none; }
 
-      #paris { grid-template-columns:1fr; }
-      .paris-l { padding:4rem 1.4rem; }
-      .paris-r { padding:0 1.4rem 4rem; justify-content:flex-start; }
+      footer { flex-direction: column; text-align: center; }
+    }
 
-      #services { padding:4rem 1.4rem; }
-      .svc-item { flex-direction:column; gap:.4rem; }
-      .svc-r { align-items:flex-start; }
-      .svc-d { text-align:left; max-width:none; }
-      .svc-item::before { display:none; }
-
-      #clients { padding:4rem 1.4rem; }
-
-      #contact { padding:5rem 1.4rem; }
-      .ct-h { font-size:clamp(2.5rem,11vw,5rem); }
-
-      footer { padding:1.2rem 1.4rem; flex-direction:column; gap:.5rem; text-align:center; }
-      .wa-pill { right:1rem; bottom:1rem; }
+    @media (max-width: 600px) {
+      .hero-name .l1, .hero-name .l2 { font-size: clamp(3.5rem,15vw,6.5rem); }
+      .ct-headline { font-size: clamp(2.8rem,11vw,5rem); }
+      .wa-float { right: 1rem; bottom: 1rem; }
     }
   </style>
 </head>
@@ -448,198 +516,149 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nb"></div>
-  <a href="#" class="nl">Matias Rojas</a>
-  <div class="nr">
-    <span class="nr-tag">Paris</span>
+  <div class="nav-bg"></div>
+  <a href="#" class="nav-logo">Matias Rojas</a>
+  <div class="nav-right">
+    <span class="nav-city">Paris</span>
     <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous."
-       class="nr-cta" target="_blank" rel="noopener">Réserver</a>
+       class="nav-cta" target="_blank" rel="noopener">Réserver</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <!-- Left: white -->
-  <div class="hl">
-    <h1 class="h-name">
-      <span class="rcut">Matias</span>
-      <span class="rcut"><em>Rojas.</em></span>
+  <div class="hero-text">
+    <div class="hero-badge">
+      <span class="badge-num">5<sup>e</sup></span>
+      <span class="badge-label">OMC World<br>Paris 2022</span>
+    </div>
+    <p class="hero-eyebrow">Buenos Aires → Paris</p>
+    <h1 class="hero-name">
+      <span class="l1">Matias</span>
+      <span class="l2">Rojas.</span>
     </h1>
-    <div class="h-foot">
-      <p>Coiffeur à domicile<br>Paris, France</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>Coiffeur</strong>À domicile</div>
+      <div class="hero-meta-item"><strong>Paris</strong>Île-de-France</div>
+      <div class="hero-meta-item"><strong>5<sup style="font-size:.7em">e</sup> mondial</strong>OMC 2022</div>
     </div>
   </div>
-
-  <!-- Right: celeste -->
-  <div class="hr">
-    <!--
-      Remplacer par: <img src="photo.jpg" alt="Matias Rojas">
-    -->
-    <div class="ph">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="1"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
+  <div class="hero-photo">
+    <!--  <img src="photo.jpg" alt="Matias Rojas">  -->
+    <div class="hero-ph">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
         <path d="M21 15l-5-5L5 21"/>
       </svg>
-      Photo principale ici
+      Photo principale
     </div>
+    <span class="hero-photo-label">Paris · 48°51′N 2°21′E</span>
   </div>
 </section>
 
-<!-- Razor divider -->
-<div class="razor" id="rd1"></div>
+<!-- STATEMENT -->
+<section id="statement">
+  <div class="statement-inner">
+    <p class="statement-text rev">
+      Venu d'Argentine pour un championnat mondial.<br>
+      <em>Resté à Paris pour continuer à couper.</em>
+    </p>
+    <p class="statement-source rev d1">— Coiffeur à domicile depuis 2022</p>
+  </div>
+</section>
 
-<!-- OPENER -->
-<section id="opener">
-  <p class="open-q rev">
-    Venu d'Argentine pour un championnat mondial.<br>
-    <strong>Resté à Paris pour continuer à couper.</strong>
-  </p>
+<!-- ACHIEVEMENT -->
+<section id="achievement">
+  <div class="ach-num rev">5<sup>e</sup></div>
+  <div class="ach-content rev d1">
+    <p class="ach-eyebrow">OMC Hair World Championship · Paris, 2022</p>
+    <h2 class="ach-title">Face aux meilleurs coiffeurs du monde,<br>à la ville où il a choisi de rester.</h2>
+    <p class="ach-body">
+      Parmi les 47 nations représentées, Matias Rojas a terminé 5e mondial dans la catégorie hommes. Après le championnat, il a décidé de rester à Paris.
+    </p>
+    <div class="gold-rule"></div>
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="ab-photo">
-    <!--
-      Remplacer par: <img src="photo2.jpg" alt="Matias au travail" class="prv">
-    -->
-    <div class="ph prv">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="1"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
+  <div class="about-photo">
+    <!--  <img src="photo2.jpg" alt="Matias au travail">  -->
+    <div class="about-ph">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
         <path d="M21 15l-5-5L5 21"/>
       </svg>
       Portrait / en action
     </div>
+    <span class="about-vtext">Buenos Aires · Argentina</span>
   </div>
-  <div class="ab-txt">
-    <p class="sl rev">À propos</p>
-    <h2 class="ab-h rev d1">Un coiffeur argentin<br>installé à Paris.</h2>
-    <p class="ab-p rev d1">
+  <div class="about-content">
+    <p class="about-eyebrow rev">À propos</p>
+    <h2 class="about-title rev d1">Un coiffeur argentin<br><em>installé à Paris.</em></h2>
+    <p class="about-para rev d2">
       Matias est arrivé en 2022 pour le OMC Hair World Championship.
       <strong>Il a terminé 5e mondial.</strong> Puis il est resté.
     </p>
-    <p class="ab-p rev d1">
-      Depuis, il coupe à domicile. Il vient chez vous, avec tout le matériel. Pas de salle d'attente, pas de déplacement. <strong>Juste une vraie coupe.</strong>
+    <p class="about-para rev d2">
+      Depuis, il coupe à domicile. Il vient chez vous, avec tout le matériel.
+      Pas de salle d'attente, pas de déplacement. <strong>Juste une vraie coupe.</strong>
     </p>
-    <p class="ab-p rev d1">
+    <p class="about-para rev d2">
       Sa façon de couper vient d'Argentine, affinée à Paris. Les deux se sentent dans le résultat.
     </p>
   </div>
 </section>
 
-<!-- Razor divider -->
-<div class="razor" id="rd2"></div>
-
-<!-- PARIS / ACHIEVEMENT (celeste section) -->
-<section id="paris">
-  <div class="paris-l">
-    <div>
-      <p class="paris-label rev">OMC Hair World Championship · Paris 2022</p>
-      <div class="paris-num rev d1">
-        5<sup>e</sup>
-      </div>
-    </div>
-    <p class="paris-caption rev d2">
-      Face aux meilleurs coiffeurs du monde,<br>
-      à Paris, la ville où il a choisi de rester.
-    </p>
-  </div>
-  <div class="paris-r">
-    <div class="eiffel-wrap" id="eiffel-wrap">
-      <svg class="eiffel" viewBox="0 0 160 380" xmlns="http://www.w3.org/2000/svg">
-      <!-- Base legs -->
-      <path d="M 20 380 Q 30 310 80 220"/>
-      <path d="M 140 380 Q 130 310 80 220"/>
-      <!-- Base arches -->
-      <path d="M 20 380 Q 50 350 80 340 Q 110 350 140 380"/>
-      <!-- Base horizontal -->
-      <line x1="28" y1="340" x2="132" y2="340"/>
-      <!-- First platform -->
-      <line x1="35" y1="270" x2="125" y2="270"/>
-      <!-- Between base and first platform: cross braces -->
-      <line x1="30" y1="310" x2="70" y2="270"/>
-      <line x1="130" y1="310" x2="90" y2="270"/>
-      <!-- First level to second: narrowing -->
-      <path d="M 40 270 Q 55 230 80 180"/>
-      <path d="M 120 270 Q 105 230 80 180"/>
-      <!-- Second platform -->
-      <line x1="52" y1="210" x2="108" y2="210"/>
-      <!-- Cross braces upper -->
-      <line x1="45" y1="250" x2="72" y2="210"/>
-      <line x1="115" y1="250" x2="88" y2="210"/>
-      <!-- Second to top: final narrowing -->
-      <path d="M 56 180 Q 65 140 80 90"/>
-      <path d="M 104 180 Q 95 140 80 90"/>
-      <!-- Third platform -->
-      <line x1="62" y1="150" x2="98" y2="150"/>
-      <!-- Top section -->
-      <path d="M 65 110 Q 72 80 80 40"/>
-      <path d="M 95 110 Q 88 80 80 40"/>
-      <!-- Antenna -->
-      <line x1="80" y1="40" x2="80" y2="5"/>
-      <!-- Antenna tip details -->
-      <line x1="78" y1="18" x2="82" y2="18"/>
-      <line x1="77" y1="30" x2="83" y2="30"/>
-    </svg>
-    </div>
-  </div>
-</section>
-
 <!-- SERVICES -->
 <section id="services">
-  <p class="sl rev" style="margin-bottom:2.5rem;">Ce qu'il fait</p>
-  <ul class="svc-list scissor-cursor">
-    <li class="svc-item rev">
-      <span class="svc-name">Coupe homme</span>
-      <span class="svc-r">
-        <span class="svc-price">25 €</span>
-        <span class="svc-d">Classique, fade ou sur mesure. La coupe qui vous correspond.</span>
-      </span>
-    </li>
-    <li class="svc-item rev">
-      <span class="svc-name">Coupe + Barbe</span>
-      <span class="svc-r">
-        <span class="svc-price">30 €</span>
-        <span class="svc-d">Les deux ensemble. Taillée, dégradée ou rasée selon vos envies.</span>
-      </span>
-    </li>
-    <li class="svc-item rev">
-      <span class="svc-name">Coupe femme</span>
-      <span class="svc-r">
-        <span class="svc-price">25 €</span>
-        <span class="svc-d">Coupe, brushing, entretien. La même précision, sans le salon.</span>
-      </span>
-    </li>
-    <li class="svc-item rev">
-      <span class="svc-name">Événement</span>
-      <span class="svc-r">
-        <span class="svc-price">Sur devis</span>
-        <span class="svc-d">Mariage, shooting, soirée. Il se déplace pour les occasions qui comptent.</span>
-      </span>
-    </li>
-  </ul>
+  <div class="svc-header rev">
+    <span class="svc-eyebrow">Ce qu'il fait</span>
+    <span class="svc-note">À domicile, partout en Île-de-France</span>
+  </div>
+  <table class="svc-table">
+    <tbody>
+      <tr class="rev">
+        <td class="sn">Coupe homme</td>
+        <td class="sd">Classique, fade ou sur mesure.<br>La coupe qui vous correspond.</td>
+        <td class="sp">25 €</td>
+      </tr>
+      <tr class="rev d1">
+        <td class="sn">Coupe + Barbe</td>
+        <td class="sd">Les deux ensemble. Taillée, dégradée<br>ou rasée selon vos envies.</td>
+        <td class="sp">30 €</td>
+      </tr>
+      <tr class="rev d2">
+        <td class="sn">Coupe femme</td>
+        <td class="sd">Coupe, brushing, entretien.<br>La même précision, sans le salon.</td>
+        <td class="sp">25 €</td>
+      </tr>
+      <tr class="rev d3">
+        <td class="sn">Événement</td>
+        <td class="sd">Mariage, shooting, soirée. Il se déplace<br>pour les occasions qui comptent.</td>
+        <td class="sp">Sur devis</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- ZONE -->
-<div id="zone" class="rev">
-  <div class="zone-in">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-      <circle cx="12" cy="9" r="2.5"/>
-    </svg>
-    <span>Île-de-France — Paris et banlieue</span>
-    <span class="zone-sep">·</span>
-    <span>Il se déplace jusqu'à vous, sans frais supplémentaires</span>
-  </div>
+<div id="zone">
+  <svg class="zone-pin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+    <circle cx="12" cy="9" r="2.5"/>
+  </svg>
+  <span class="zone-text">
+    <strong>Île-de-France</strong> — Paris et banlieue · Déplacement sans frais supplémentaires
+  </span>
 </div>
 
-<!-- CLIENTS (dark) -->
+<!-- CLIENTS -->
 <section id="clients">
-  <div class="cl-in">
-    <p class="cl-lb">Références</p>
-    <p class="cl-q rev">
-      Joueurs du <span class="cel">Racing 92</span>,
+  <div class="cl-inner">
+    <p class="cl-eyebrow">Références</p>
+    <p class="cl-text rev">
+      Joueurs du <span class="cl-gold">Racing 92</span>,
       footballeurs argentins, artistes de la scène parisienne.
       <strong>Il n'en parle pas trop.</strong>
       Ceux qui l'ont eu une fois reviennent.
@@ -656,39 +675,38 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2 class="ct-h rev">Votre coiffure,<br><em>chez vous.</em></h2>
-  <p class="ct-sub rev d1">
-    Réservez un créneau en ligne ou écrivez directement sur WhatsApp.
-  </p>
-  <div class="ct-btns rev d1">
-    <!-- Calendly popup -->
-    <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/VOTRE-LIEN'});return false;"
-       class="btn-calendly">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <rect x="3" y="4" width="18" height="18" rx="2"/>
-        <line x1="16" y1="2" x2="16" y2="6"/>
-        <line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="3" y1="10" x2="21" y2="10"/>
-      </svg>
-      Choisir un créneau
-    </a>
-    <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous%20pour%20une%20coupe%20à%20domicile."
-       class="btn-wa" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      WhatsApp
-    </a>
-  </div>
-  <div class="ct-socs">
-    <a href="https://www.instagram.com/matiaaas_rojas" class="ct-soc" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.tiktok.com/@matiasagustinrojas" class="ct-soc" target="_blank" rel="noopener">TikTok</a>
+  <div class="ct-inner">
+    <p class="ct-eyebrow rev">Réserver</p>
+    <h2 class="ct-headline rev d1">Votre coiffure,<br><em>chez vous.</em></h2>
+    <p class="ct-sub rev d2">Réservez un créneau en ligne ou écrivez directement sur WhatsApp.</p>
+    <div class="ct-btns rev d2">
+      <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/VOTRE-LIEN'});return false;"
+         class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Choisir un créneau
+      </a>
+      <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous%20pour%20une%20coupe%20à%20domicile."
+         class="btn btn-wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="ct-socials rev d3">
+      <a href="https://www.instagram.com/matiaaas_rojas" class="ct-soc" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@matiasagustinrojas" class="ct-soc" target="_blank" rel="noopener">TikTok</a>
+    </div>
   </div>
 </section>
 
 <!-- FLOATING WA -->
 <a href="https://wa.me/33743570425?text=Bonjour%20Matias%2C%20je%20souhaite%20prendre%20rendez-vous."
-   class="wa-pill" target="_blank" rel="noopener">
+   class="wa-float" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
@@ -697,8 +715,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="ft-n">Matias Rojas</span>
-  <span class="ft-c">© 2025 · Coiffeur à domicile · Paris</span>
+  <span class="ft-logo">Matias Rojas</span>
+  <span class="ft-copy">© 2025 · Coiffeur à domicile · Paris</span>
   <a href="https://www.instagram.com/matiaaas_rojas" class="ft-ig" target="_blank" rel="noopener">@matiaaas_rojas</a>
 </footer>
 
@@ -706,24 +724,29 @@
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
 <script>
-  // Nav scroll
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('s', scrollY > 40), { passive: true });
+  const hero = document.getElementById('hero');
 
-  // Scroll reveals (eiffel included — uses clip-path, no JS length calc needed)
+  function updateNav() {
+    const pastHero = window.scrollY > hero.offsetHeight - 80;
+    nav.classList.toggle('scrolled', window.scrollY > 40 || pastHero);
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       e.target.classList.add('in');
       io.unobserve(e.target);
     });
-  }, { threshold: .08 });
+  }, { threshold: .07 });
 
-  document.querySelectorAll('.rev, .prv, .razor, .eiffel-wrap').forEach(el => io.observe(el));
+  document.querySelectorAll('.rev').forEach(el => io.observe(el));
 </script>
 
-<!-- ⚠️  Remplacer https://calendly.com/VOTRE-LIEN par le lien Calendly de Matias      -->
-<!-- ⚠️  Remplacer les blocs <div class="ph"> par <img src="..."> avec les photos réelles -->
+<!-- ⚠️  Remplacer https://calendly.com/VOTRE-LIEN par le lien Calendly réel -->
+<!-- ⚠️  Remplacer les blocs .hero-ph / .about-ph par <img src="..."> -->
 
 </body>
 </html>

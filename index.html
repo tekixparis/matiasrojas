@@ -66,11 +66,12 @@
       font-size: .88rem; font-weight: 800; letter-spacing: .06em;
       text-transform: uppercase;
       color: oklch(97% 0.005 230); text-decoration: none;
-      padding: .42rem 1.15rem;
-      background: var(--ink);
+      padding: .42rem 1.35rem;
+      background: var(--wa);
+      border-radius: 9999px;
       transition: background .2s;
     }
-    .nav-cta:hover { background: var(--cel) !important; }
+    .nav-cta:hover { background: oklch(48% 0.20 145) !important; }
 
     /* ── HERO ─────────────────────────────────── */
     #hero {
@@ -82,6 +83,7 @@
     }
 
     .hero-left {
+      position: relative;
       display: flex;
       flex-direction: column;
       padding: clamp(5.5rem, 9vh, 8rem) var(--pad) clamp(2.5rem, 4vh, 4rem);
@@ -185,7 +187,8 @@
     .hero-wa {
       display: inline-flex; align-items: center; gap: .75rem;
       background: var(--wa); color: oklch(99% 0.01 145);
-      padding: .95rem 2.1rem;
+      padding: .95rem 2.25rem;
+      border-radius: 9999px;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem; font-weight: 800; letter-spacing: .06em;
       text-transform: uppercase; text-decoration: none;
@@ -470,7 +473,8 @@
     .btn-wa-main {
       display: inline-flex; align-items: center; gap: .85rem;
       background: var(--wa); color: oklch(99% 0.01 145);
-      padding: 1.1rem 2.5rem;
+      padding: 1.1rem 2.75rem;
+      border-radius: 9999px;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.05rem; font-weight: 800; letter-spacing: .06em;
       text-transform: uppercase; text-decoration: none;
@@ -490,15 +494,16 @@
     .wa-float {
       position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 800;
       display: flex; align-items: center; gap: .6rem;
-      background: var(--ink); color: oklch(97% 0.005 230);
-      padding: .7rem 1.25rem;
+      background: var(--wa); color: oklch(99% 0.01 145);
+      padding: .7rem 1.4rem;
+      border-radius: 9999px;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: .82rem; font-weight: 800; letter-spacing: .08em;
       text-transform: uppercase; text-decoration: none;
-      box-shadow: 0 4px 22px oklch(8% 0.025 245 / 0.4);
+      box-shadow: 0 4px 22px oklch(54% 0.20 145 / 0.35);
       transition: background .25s, transform .2s;
     }
-    .wa-float:hover { background: var(--wa); transform: translateY(-2px); }
+    .wa-float:hover { background: oklch(48% 0.20 145); transform: translateY(-2px); }
     .wa-float svg { width: 13px; height: 13px; flex-shrink: 0; }
 
     /* ── FOOTER ───────────────────────────────── */
@@ -525,6 +530,36 @@
     }
     .ft-ig:hover { color: var(--ink); }
 
+    /* ── PARIS DÉCO ───────────────────────────── */
+    .paris-deco {
+      position: absolute; inset: 0;
+      pointer-events: none; overflow: hidden;
+      z-index: 0;
+    }
+    .hero-top, .hero-name-clip, .hero-bottom {
+      position: relative; z-index: 1;
+    }
+    .eiffel {
+      position: absolute;
+      right: -1rem; top: 3.5rem;
+      width: clamp(90px, 12vw, 155px);
+      opacity: .055;
+      color: var(--cel);
+    }
+    /* Twinkling sparks — Tour Eiffel light show */
+    .spark {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--cel);
+      border-radius: 50%;
+      opacity: 0;
+      animation: parisSparkle var(--dur) ease-in-out var(--d) infinite;
+    }
+    @keyframes parisSparkle {
+      0%, 100% { opacity: 0; transform: scale(.4); }
+      48%, 52% { opacity: .55; transform: scale(1); }
+    }
+
     /* ── SCROLL REVEALS ───────────────────────── */
     .rev {
       opacity: 0; transform: translateY(18px);
@@ -542,6 +577,8 @@
       .hero-name .l2 { animation: none; transform: none; }
       .hero-stripe { animation: none; transform: scaleX(1); }
       .hero-wa { animation: none; opacity: 1; }
+      .spark { animation: none; }
+      .ticker-track { animation: none; }
     }
 
     /* ── RESPONSIVE ───────────────────────────── */
@@ -599,6 +636,28 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
+    <!-- Paris decoration: Eiffel Tower watermark + sparkles -->
+    <div class="paris-deco" aria-hidden="true">
+      <svg class="eiffel" viewBox="0 0 60 115" fill="currentColor" aria-hidden="true">
+        <rect x="28.5" y="0" width="3" height="14"/>
+        <polygon points="26,14 34,14 38,44 22,44"/>
+        <rect x="20" y="42" width="20" height="4"/>
+        <polygon points="20,46 40,46 48,70 12,70"/>
+        <rect x="10" y="68" width="40" height="5"/>
+        <polygon points="10,73 50,73 57,96 3,96"/>
+        <path d="M3,96 Q0,112 13,112 L13,96 Z"/>
+        <path d="M57,96 Q60,112 47,112 L47,96 Z"/>
+        <rect x="13" y="96" width="34" height="16"/>
+        <rect x="1" y="112" width="58" height="3"/>
+      </svg>
+      <span class="spark" style="--d:0s;   --dur:3.8s; top:14%; right:18%;"></span>
+      <span class="spark" style="--d:.9s;  --dur:4.2s; top:9%;  right:26%;"></span>
+      <span class="spark" style="--d:1.7s; --dur:3.5s; top:20%; right:13%;"></span>
+      <span class="spark" style="--d:2.4s; --dur:4.6s; top:7%;  right:33%;"></span>
+      <span class="spark" style="--d:.4s;  --dur:3.2s; top:26%; right:22%;"></span>
+      <span class="spark" style="--d:3.1s; --dur:4.0s; top:12%; right:38%;"></span>
+    </div>
+
     <div class="hero-top">
       <div class="hero-badge">
         <span class="badge-num">5<sup>e</sup></span>

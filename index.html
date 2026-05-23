@@ -252,15 +252,18 @@
     }
     .ach-body strong { font-weight: 600; }
 
-    /* ── GALERIE — grille asymétrique ─────────────────── */
+    /* ── GALERIE — carrusel ──────────────────────────── */
     #gallery {
       background: var(--blanc);
-      padding: clamp(3.5rem, 6vh, 5.5rem) var(--pad);
+      padding-top: clamp(3.5rem, 6vh, 5.5rem);
+      padding-bottom: clamp(3.5rem, 6vh, 5.5rem);
       border-top: 1px solid var(--line);
+      overflow: hidden;
     }
     .gallery-header {
       display: flex; align-items: baseline; justify-content: space-between;
       gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+      padding: 0 var(--pad);
     }
     .gallery-title {
       font-family: 'Barlow Condensed', sans-serif;
@@ -270,41 +273,50 @@
     .gallery-hint {
       font-size: .56rem; font-weight: 300; font-style: italic; color: var(--muted);
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: .35rem;
+    .gallery-track {
+      display: flex;
+      gap: .4rem;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding: 0 var(--pad);
     }
-    .photo-slot {
-      overflow: hidden; position: relative; margin: 0;
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-slide {
+      flex: 0 0 clamp(200px, 32vw, 400px);
+      scroll-snap-align: start;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
       background: var(--stone);
     }
-    .photo-slot img {
+    .gallery-slide:last-child { margin-right: var(--pad); }
+    .gallery-slide img {
       width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
       transition: transform .65s cubic-bezier(.16,1,.3,1); display: block;
     }
-    .photo-slot:hover img { transform: scale(1.05); }
-    .photo-slot figcaption {
+    .gallery-slide:hover img { transform: scale(1.04); }
+    .gallery-slide figcaption {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2rem .7rem .6rem;
+      padding: 3rem .9rem .75rem;
       background: linear-gradient(to top, oklch(11% 0.022 245 / 0.82), transparent);
       font-size: .48rem; font-weight: 700; letter-spacing: .22em;
       text-transform: uppercase; color: oklch(84% 0.055 228);
     }
-    /* Photo Messi en vedette (2 lignes, colonne large) */
-    .photo-featured {
-      grid-row: span 2;
-      aspect-ratio: unset;
+    .gallery-nav {
+      display: flex; gap: .5rem;
+      margin-top: 1.25rem; padding: 0 var(--pad);
     }
-    /* Petites photos */
-    .photo-sm { aspect-ratio: 4/3; }
-    /* Pablo Lescano pleine largeur */
-    .photo-wide {
-      grid-column: span 3;
-      aspect-ratio: 21/6;
+    .carousel-btn {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      background: var(--stone); border: 1px solid var(--line);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
     }
+    .carousel-btn:hover { background: var(--cel-lt); }
+    .carousel-btn svg { width: .85rem; height: .85rem; color: var(--ink); }
     .gallery-caption {
-      margin-top: 1.25rem;
+      margin-top: .75rem; padding: 0 var(--pad);
       font-size: .58rem; font-weight: 300; font-style: italic; color: var(--muted);
     }
 
@@ -459,10 +471,6 @@
       #achievement { grid-template-columns: 1fr; gap: 2rem; }
       .ach-num { font-size: clamp(9rem, 30vw, 20rem); }
 
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .photo-featured { grid-row: span 1; aspect-ratio: 1/1; }
-      .photo-wide { grid-column: span 2; aspect-ratio: 16/6; }
-
       .svc-desc { display: none; }
     }
 
@@ -471,8 +479,7 @@
       .hero-name { font-size: clamp(4rem, 18vw, 8rem); }
       .ct-headline { font-size: clamp(3.2rem, 14vw, 7rem); }
       .hero-bottom-row { flex-direction: column; align-items: flex-start; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .photo-wide { aspect-ratio: 4/3; }
+      .gallery-slide { flex: 0 0 78vw; }
       .svc-item { grid-template-columns: 2.2rem 1fr auto; gap: .75rem; }
       footer { flex-direction: column; text-align: center; gap: .5rem; }
     }
@@ -579,47 +586,59 @@
   </div>
 </section>
 
-<!-- GALERIE — grille asymétrique -->
+<!-- GALERIE — carrusel -->
 <section id="gallery">
   <div class="gallery-header rev">
     <h2 class="gallery-title">Certains visages.</h2>
     <span class="gallery-hint">Il n'en parle pas trop.</span>
   </div>
-  <div class="gallery-grid">
-    <figure class="photo-slot photo-featured">
+  <div class="gallery-track" id="galleryTrack">
+    <figure class="gallery-slide">
       <img src="LEO MESSI.jpeg" alt="Matias Rojas avec Lionel Messi">
       <figcaption>Lionel Messi</figcaption>
     </figure>
-    <figure class="photo-slot photo-sm">
-      <img src="lgante.png" alt="Matias Rojas avec L-Gante, Tour Eiffel" loading="lazy">
-      <figcaption>L-Gante</figcaption>
-    </figure>
-    <figure class="photo-slot photo-sm">
-      <img src="racing-92.png" alt="Matias Rojas avec le Racing 92" loading="lazy">
-      <figcaption>Racing 92</figcaption>
-    </figure>
-    <figure class="photo-slot photo-sm">
-      <img src="agustin-crevy.png" alt="Matias Rojas avec Agustín Creevy" loading="lazy">
-      <figcaption>Agustín Creevy</figcaption>
-    </figure>
-    <figure class="photo-slot photo-sm">
-      <img src="autenticos-decadentes.png" alt="Matias Rojas avec Auténticos Decadentes" loading="lazy">
-      <figcaption>Auténticos Decadentes</figcaption>
-    </figure>
-    <figure class="photo-slot photo-sm">
+    <figure class="gallery-slide">
       <img src="Dupont.jpeg" alt="Matias Rojas avec Antoine Dupont" loading="lazy">
       <figcaption>Antoine Dupont</figcaption>
     </figure>
-    <figure class="photo-slot photo-sm">
+    <figure class="gallery-slide">
       <img src="GIROUD.jpeg" alt="Matias Rojas avec Olivier Giroud" loading="lazy">
       <figcaption>Olivier Giroud</figcaption>
     </figure>
-    <figure class="photo-slot photo-wide">
+    <figure class="gallery-slide">
+      <img src="lgante.png" alt="Matias Rojas avec L-Gante" loading="lazy">
+      <figcaption>L-Gante</figcaption>
+    </figure>
+    <figure class="gallery-slide">
+      <img src="agustin-crevy.png" alt="Matias Rojas avec Agustín Creevy" loading="lazy">
+      <figcaption>Agustín Creevy</figcaption>
+    </figure>
+    <figure class="gallery-slide">
+      <img src="racing-92.png" alt="Matias Rojas avec le Racing 92" loading="lazy">
+      <figcaption>Racing 92</figcaption>
+    </figure>
+    <figure class="gallery-slide">
+      <img src="autenticos-decadentes.png" alt="Matias Rojas avec Auténticos Decadentes" loading="lazy">
+      <figcaption>Auténticos Decadentes</figcaption>
+    </figure>
+    <figure class="gallery-slide">
       <img src="pablo-lescano.png" alt="Matias Rojas avec Pablo Lescano" loading="lazy" style="object-position: center 30%;">
       <figcaption>Pablo Lescano</figcaption>
     </figure>
   </div>
-  <p class="gallery-caption rev">Ceux qui l'ont eu une fois reviennent.</p>
+  <div class="gallery-nav">
+    <button class="carousel-btn" id="gPrev" aria-label="Précédent">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
+    </button>
+    <button class="carousel-btn" id="gNext" aria-label="Suivant">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6,3 11,8 6,13"/>
+      </svg>
+    </button>
+  </div>
+  <p class="gallery-caption">Ceux qui l'ont eu une fois reviennent.</p>
 </section>
 
 <!-- TARIFS -->
@@ -720,6 +739,14 @@
   }, { threshold: .06 });
 
   document.querySelectorAll('.rev').forEach(el => io.observe(el));
+
+  const track = document.getElementById('galleryTrack');
+  document.getElementById('gPrev').addEventListener('click', () => {
+    track.scrollBy({ left: -(track.querySelector('.gallery-slide').offsetWidth + 6), behavior: 'smooth' });
+  });
+  document.getElementById('gNext').addEventListener('click', () => {
+    track.scrollBy({ left: track.querySelector('.gallery-slide').offsetWidth + 6, behavior: 'smooth' });
+  });
 </script>
 
 </body>
